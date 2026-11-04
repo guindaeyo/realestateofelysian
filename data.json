@@ -603,10 +603,11 @@
       "residents": [
         "Pinkberry Perlman"
       ],
-      "rawResidents": "1. Pinkberry Perlman ",
+      "rawResidents": "1. Pinkberry Perlman",
       "number": "",
-      "updatedAt": null,
-      "threadUrl": ""
+      "updatedAt": "2026-11-04T20:24:29.642Z",
+      "threadUrl": "https://roleplayth.com/showthread.php?tid=3480",
+      "image": ""
     },
     {
       "name": "Laurfera",
@@ -769,5 +770,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T20:22:38.887Z"
+  "lastUpdated": "2026-11-04T20:24:29.642Z"
 }
