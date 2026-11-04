@@ -103,3 +103,36 @@ body{font-size:16px}
 .forum-link-button:focus-visible{outline:2px solid #f6deb1;outline-offset:3px}
 .forum-link-button svg{width:18px;height:18px;flex:none}
 @media(max-width:600px){.stats .stat > span{gap:6px;font-size:13px}.stats .stat > span svg{width:16px;height:16px}.forum-link-button{width:100%;font-size:15px}}
+
+/* Footer: latest registry status replaces the former source/date line */
+.footer{align-items:center}
+.footer-right{align-items:flex-end;justify-content:center;min-width:0;max-width:60%}
+.footer-right .update-status{margin:0;padding:0;border:0;background:transparent;display:flex;flex-direction:column;align-items:flex-end;gap:5px;text-align:right;letter-spacing:normal;font-family:'Bai Jamjuree',sans-serif;font-size:14px;line-height:1.6}
+.footer-right .update-status>div{justify-content:flex-end;gap:9px}
+.footer-right .update-status svg{width:16px;height:16px}
+.footer-right .update-status small{font-size:12px;letter-spacing:normal}
+@media(max-width:760px){.footer-right{max-width:100%;align-items:flex-end;margin-top:16px}.footer-right .update-status{text-align:right;font-size:13px}.footer-right .update-status>div{flex-wrap:wrap}}
+
+/* Footer: right-aligned four-line property update record */
+.footer .footer-right{align-items:flex-end;text-align:right;max-width:min(60%,560px)}
+.footer .footer-right .update-status{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:4px;max-width:100%;line-height:1.65;font-family:'Bai Jamjuree',sans-serif;letter-spacing:normal}
+.footer .footer-update-heading{display:inline-flex;align-items:center;justify-content:flex-end;gap:8px;color:var(--goldlight);font-size:15px;font-weight:600}
+.footer .footer-update-heading svg{width:18px;height:18px;color:var(--gold);display:block;flex-shrink:0}
+.footer .footer-update-label{color:#bfb4a0;font-size:14px}
+.footer .footer-update-date{font-family:'Bai Jamjuree',sans-serif;font-size:16px;font-weight:600;color:#f1d5a2;line-height:1.55;overflow-wrap:anywhere}
+.footer .footer-update-by{font-size:13px;color:#aaa08c}
+.footer #lastCheckedAt.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:760px){.footer .footer-right{max-width:100%;margin-top:18px}.footer .footer-right .update-status{align-items:flex-end;text-align:right}.footer .footer-update-date{font-size:15px}}
+
+/* Fine gold divider keeps the update footer elegant without changing its four lines. */
+.footer .footer-right .update-status::before{content:"";display:block;width:46px;height:1px;background:linear-gradient(90deg,transparent,#c7a465);margin:0 0 7px auto}
+.footer .footer-update-heading{letter-spacing:.25px}
+@media(max-width:760px){.footer .footer-right{margin-left:auto;width:100%}.footer .footer-right .update-status{margin-left:auto}}
+
+/* Single registry timestamp in footer: title / date / one-line attribution */
+.footer .footer-right .update-status{gap:5px}
+.footer .footer-update-heading{display:inline-flex;align-items:center;justify-content:flex-end;gap:9px}
+.footer .footer-update-date{display:block;line-height:1.6}
+.footer .footer-update-description{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;column-gap:10px;row-gap:0;color:#aaa08c;font-family:'Bai Jamjuree',sans-serif;font-size:13px;line-height:1.8;letter-spacing:normal;text-align:right}
+.footer .footer-right .update-status>.footer-update-description{display:flex;gap:0 10px}
+@media(max-width:760px){.footer .footer-update-description{justify-content:flex-end;font-size:12px}}
