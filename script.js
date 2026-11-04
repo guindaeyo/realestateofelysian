@@ -2,12 +2,42 @@ let DATA={roads:[],houses:[],lands:[],unlocks:[]};
 let originalSha=null;
 let loaded=false;
 let baselineData=null;
-async function loadData(){
-  try {const res=await fetch('data.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('ไม่สามารถอ่าน data.json');DATA=await res.json();baselineData=JSON.stringify(DATA);loaded=true;}
-  catch(e){console.error(e);document.querySelector('#summaryStats').innerHTML='<p class="empty">ไม่สามารถอ่าน data.json โปรดเปิดผ่านเว็บเซิร์ฟเวอร์ เช่น Vercel หรือ Live Server</p>';return;}
-  refreshSite();showView(location.hash.slice(1)||'home');setupAdmin();
+let lastDataSignature='';
+let lastExternalCheck=null;
+let activeRecord=null;
+const REFRESH_INTERVAL_MS=60000;
+const timestampText=value=>{if(!value)return 'ยังไม่มีบันทึกวันที่แก้ไขอัตโนมัติ';const date=new Date(value);return Number.isNaN(date.getTime())?'ไม่ทราบวันที่':new Intl.DateTimeFormat('th-TH-u-ca-gregory',{timeZone:'Asia/Bangkok',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(date)+' น.'};
+function updateTimestampUI(){
+ const current=$('#lastUpdatedGlobal');if(current)current.textContent=timestampText(DATA.lastUpdated);const dir=$('#directoryLatest');if(dir)dir.textContent=timestampText(DATA.lastUpdated);
+ const checked=$('#lastCheckedAt');if(checked)checked.textContent=lastExternalCheck?'ตรวจข้อมูลล่าสุด '+new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(lastExternalCheck))+' น.':'ตรวจสอบข้อมูลใหม่ทุก 60 วินาที';
 }
-function refreshSite(){stats();home();renderFilters();houseList();landList();requestList();icons()}
+async function checkForNewData(){
+ if(!loaded)return;
+ try{
+  const res=await fetch('data.json?refresh='+Date.now(),{cache:'no-store'});
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  const fresh=await res.json();
+  const signature=JSON.stringify(fresh);lastExternalCheck=new Date().toISOString();
+  if(signature!==lastDataSignature){
+   if(adminDirty){adminMessage('พบข้อมูลใหม่จากเว็บไซต์ แต่ยังมีร่างข้อมูลที่ไม่ได้เผยแพร่ กรุณาสำรอง JSON และรีเฟรชก่อนแก้ต่อ เพื่อไม่ให้ข้อมูลทับกัน','error');}
+   else{
+    DATA=fresh;baselineData=signature;lastDataSignature=signature;
+    const modalWasOpen=!$('#detailModal').hidden;const selected=activeRecord;
+    refreshSite();
+    if(adminUnlocked)renderAdminRecords();
+    if(modalWasOpen&&selected){const list=DATA[selected.kind==='house'?'houses':'lands'];const i=list.findIndex(x=>x.name===selected.name);if(i>=0)openModal(selected.kind,i,true);else closeModal();}
+   }
+  }
+  updateTimestampUI();
+ }catch(e){console.warn('ตรวจการเปลี่ยนแปลงข้อมูลไม่สำเร็จ',e);const el=$('#lastCheckedAt');if(el)el.textContent='ตรวจข้อมูลไม่สำเร็จ จะลองใหม่ใน 60 วินาที';}
+}
+
+async function loadData(){
+  try {const res=await fetch('data.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('ไม่สามารถอ่าน data.json');DATA=await res.json();baselineData=JSON.stringify(DATA);lastDataSignature=baselineData;loaded=true;lastExternalCheck=new Date().toISOString();}
+  catch(e){console.error(e);document.querySelector('#summaryStats').innerHTML='<p class="empty">ไม่สามารถอ่าน data.json โปรดเปิดผ่านเว็บเซิร์ฟเวอร์ เช่น Vercel หรือ Live Server</p>';return;}
+  refreshSite();showView(location.hash.slice(1)||'home');setupAdmin();setInterval(checkForNewData,REFRESH_INTERVAL_MS);
+}
+function refreshSite(){stats();home();renderFilters();houseList();landList();requestList();updateTimestampUI();icons()}
 const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));
 const icons=()=>{if(window.lucide)window.lucide.createIcons()};const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const fmt=n=>Number(n).toLocaleString('en-US');
 const roadNames={pine:'ไพน์วูดส์โร้ด',maple:'เมเปิลโร้ด',pumpkin:'พัมป์กินส์โร้ด',blossom:'บลอสซัมโร้ด',other:'อสังหาริมทรัพย์อื่น ๆ'};
@@ -17,13 +47,17 @@ function stats(){const arr=[['building-2',DATA.houses.length,'ทะเบีย
 function home(){$('#roadGrid').innerHTML=DATA.roads.map((r,i)=>`<article class="road-card"><div class="road-picture"><img src="${r.image}" alt="${escapeHTML(r.name)}" loading="lazy"><span class="road-number">COLLECTION 0${i+1}</span></div><div class="road-info"><span class="road-en">${r.en}</span><h3>${r.name}</h3><p>${r.description}</p><div class="road-features"><span><i data-lucide="users-round"></i> ${r.capacity} คน</span><span><i data-lucide="messages-square"></i> ${r.threads} กระทู้</span><span><i data-lucide="house"></i> ${r.type}</span></div><div class="road-price-row"><div><small class="price-prefix">ราคาเริ่มต้น</small><strong class="price">$${fmt(r.price)}</strong></div><button class="subtle-btn" data-road="${r.id}">ดูบ้านในย่านนี้ <i data-lucide="arrow-up-right"></i></button></div></div></article>`).join('')}
 function renderFilters(){ $('#houseFilters').innerHTML=[['all','ทั้งหมด'],...DATA.roads.map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(x=>`<button class="chip ${roadFilter===x[0]?'active':''}" data-filter="${x[0]}">${x[1]}</button>`).join('') }
 function filtered(q,strings){return strings.some(s=>String(s??'').toLocaleLowerCase().includes(q))}
-function houseList(){const q=$('#houseSearch').value.trim().toLocaleLowerCase();const rows=DATA.houses.filter(x=>(roadFilter==='all'||roadFilter===x.road)&&filtered(q,[x.name,x.owner,x.rawResidents,roadNames[x.road]]));$('#houseResultCount').textContent=`พบ ${rows.length} รายการ`;$('#houseList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="house" data-id="${DATA.houses.indexOf(x)}"><span class="record-top"><span class="record-type">${escapeHTML(roadNames[x.road])}</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูผู้พักอาศัย</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
+function houseList(){const q=$('#houseSearch').value.trim().toLocaleLowerCase();const rows=DATA.houses.filter(x=>(roadFilter==='all'||roadFilter===x.road)&&filtered(q,[x.name,x.owner,x.rawResidents,roadNames[x.road]]));$('#houseResultCount').textContent=`พบ ${rows.length} รายการ`;$('#houseList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="house" data-id="${DATA.houses.indexOf(x)}"><span class="record-top"><span class="record-type">${escapeHTML(roadNames[x.road])}</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-updated"><i data-lucide="clock-3"></i> ${x.updatedAt?"แก้ไขล่าสุด "+escapeHTML(timestampText(x.updatedAt)):"ยังไม่มีประวัติการแก้ไข"}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูผู้พักอาศัย</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
 function landList(){const q=$('#landSearch').value.trim().toLocaleLowerCase();const rows=DATA.lands.filter(x=>filtered(q,[x.name,x.owner,x.residents.join(' ')]));$('#landResultCount').textContent=`พบ ${rows.length} โฉนด`;$('#landList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="land" data-id="${DATA.lands.indexOf(x)}"><span class="record-top"><span class="record-type">OUT-OF-TOWN DEED</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูรายชื่อ</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
 function requestList(){$('#requestList').innerHTML=DATA.unlocks.map(x=>`<article class="request-card"><span class="overline">APPROVAL RECORD</span><h3>${escapeHTML(x.house)}</h3><div class="request-meta"><span>ผู้ยื่นคำร้อง: ${escapeHTML(x.applicant)}</span><span>${escapeHTML(x.level)}</span><span class="status"><i data-lucide="check-circle-2"></i> ${escapeHTML(x.status)}</span></div><a href="${escapeHTML(x.url)}" target="_blank" rel="noopener noreferrer">เปิดกระทู้คำร้อง <i data-lucide="external-link"></i></a></article>`).join('');icons()}
+function safeForumURL(value){
+ try{const url=new URL(String(value||'').trim());return ['https:','http:'].includes(url.protocol)?url.href:'';}catch{return '';}
+}
+function forumLinkButton(value){const url=safeForumURL(value);return url?`<div class="forum-link-row"><a class="forum-link-button" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i><span>ไปยังกระทู้บ้านนี้</span><i data-lucide="arrow-up-right"></i></a></div>`:'';}
 function peopleList(list){return list.length?`<ul class="resident-list">${list.map(n=>`<li><i data-lucide="user-round"></i><span>${escapeHTML(n)}</span></li>`).join('')}</ul>`:'<p class="modal-note">ยังไม่มีข้อมูลรายชื่อผู้พักอาศัยในไฟล์</p>'}
 function metaHTML(items){return `<div class="modal-meta">${items.map(([a,b])=>`<div class="meta"><small>${a}</small><strong>${escapeHTML(b)}</strong></div>`).join('')}</div>`}
-function openModal(kind,id){let x,body='';if(kind==='house'){x=DATA.houses[id];if(!x)return;const r=DATA.roads.find(z=>z.id===x.road);body=`<h2 id="modalTitle">${escapeHTML(x.name)}</h2>${r?`<img class="modal-image" src="${r.image}" alt="${escapeHTML(r.name)}">`:''}${metaHTML([['ย่าน',roadNames[x.road]],['จำนวนผู้พักอาศัย',x.count+' คน'],['เจ้าของบ้าน (ตัวละครหลัก)',x.owner],['รายชื่อที่บันทึกไว้',x.residents.length+' คน']])}<div class="detail-section"><h3>รายชื่อผู้พักอาศัย</h3>${peopleList(x.residents)}</div>${r?`<div class="detail-section"><h3>ข้อกำหนดของประเภทบ้าน</h3><p class="modal-note">ราคา $${fmt(r.price)} · รองรับ ${r.capacity} คน · สูงสุด ${r.threads} กระทู้ต่อหลัง</p><ul>${r.rooms.map(s=>`<li>${escapeHTML(s)}</li>`).join('')}</ul><p class="modal-note">${escapeHTML(r.note)}</p></div>`:''}`;$('#modalKicker').textContent='ELYSIAN PROPERTY RECORD'}else if(kind==='land'){x=DATA.lands[id];if(!x)return;body=`<h2 id="modalTitle">${escapeHTML(x.name)}</h2>${metaHTML([['เจ้าของ',x.owner],['จำนวนผู้พักอาศัย',x.count+' คน']])}<div class="detail-section"><h3>รายชื่อผู้พักอาศัย</h3>${peopleList(x.residents)}</div>`;$('#modalKicker').textContent='DEED RECORD'}else return;$('#modalContent').innerHTML=body;lastFocus=document.activeElement;$('#detailModal').hidden=false;document.body.classList.add('modal-open');$('#modalClose').focus();icons()}
-function closeModal(){if($('#detailModal').hidden)return;$('#detailModal').hidden=true;document.body.classList.remove('modal-open');if(lastFocus?.isConnected)lastFocus.focus()}
+function openModal(kind,id,backgroundRefresh=false){let x,body='';if(kind==='house'){x=DATA.houses[id];if(!x)return;const r=DATA.roads.find(z=>z.id===x.road);body=`<h2 id="modalTitle">${escapeHTML(x.name)}</h2>${r?`<img class="modal-image" src="${r.image}" alt="${escapeHTML(r.name)}">`:''}${metaHTML([['ย่าน',roadNames[x.road]],['จำนวนผู้พักอาศัย',x.count+' คน'],['เจ้าของบ้าน (ตัวละครหลัก)',x.owner],['รายชื่อที่บันทึกไว้',x.residents.length+' คน']])}<p class="modal-record-updated"><i data-lucide="clock-3"></i> แก้ไขล่าสุด: ${escapeHTML(timestampText(x.updatedAt))}</p>${forumLinkButton(x.threadUrl)}<div class="detail-section"><h3>รายชื่อผู้พักอาศัย</h3>${peopleList(x.residents)}</div>${r?`<div class="detail-section"><h3>ข้อกำหนดของประเภทบ้าน</h3><p class="modal-note">ราคา $${fmt(r.price)} · รองรับ ${r.capacity} คน · สูงสุด ${r.threads} กระทู้ต่อหลัง</p><ul>${r.rooms.map(s=>`<li>${escapeHTML(s)}</li>`).join('')}</ul><p class="modal-note">${escapeHTML(r.note)}</p></div>`:''}`;activeRecord={kind,name:x.name};$('#modalKicker').textContent='ELYSIAN PROPERTY RECORD'}else if(kind==='land'){x=DATA.lands[id];if(!x)return;body=`<h2 id="modalTitle">${escapeHTML(x.name)}</h2>${metaHTML([['เจ้าของ',x.owner],['จำนวนผู้พักอาศัย',x.count+' คน']])}${forumLinkButton(x.threadUrl)}<div class="detail-section"><h3>รายชื่อผู้พักอาศัย</h3>${peopleList(x.residents)}</div>`;activeRecord={kind,name:x.name};$('#modalKicker').textContent='DEED RECORD'}else return;$('#modalContent').innerHTML=body;if(!backgroundRefresh)lastFocus=document.activeElement;$('#detailModal').hidden=false;document.body.classList.add('modal-open');if(!backgroundRefresh)$('#modalClose').focus();icons()}
+function closeModal(){if($('#detailModal').hidden)return;activeRecord=null;$('#detailModal').hidden=true;document.body.classList.remove('modal-open');if(lastFocus?.isConnected)lastFocus.focus()}
 document.addEventListener('click',e=>{const nav=e.target.closest('[data-view]');if(nav)showView(nav.dataset.view);const go=e.target.closest('[data-go]');if(go)showView(go.dataset.go);const road=e.target.closest('[data-road]');if(road){roadFilter=road.dataset.road;renderFilters();houseList();showView('directory')}const filter=e.target.closest('[data-filter]');if(filter){roadFilter=filter.dataset.filter;renderFilters();houseList()}const rec=e.target.closest('[data-kind][data-id]');if(rec)openModal(rec.dataset.kind,Number(rec.dataset.id));if(e.target.closest('[data-close]')||e.target.closest('#modalClose'))closeModal()});
 $('#menuToggle').addEventListener('click',()=>{const o=$('#mainNav').classList.toggle('open');$('#menuToggle').setAttribute('aria-expanded',String(o))});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='Tab'&&!$('#detailModal').hidden){const controls=$$('#detailModal a,#detailModal button').filter(el=>el.offsetParent!==null);if(!controls.length)return;const a=controls[0],b=controls[controls.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();b.focus()}else if(!e.shiftKey&&document.activeElement===b){e.preventDefault();a.focus()}}});$('#houseSearch').addEventListener('input',houseList);$('#landSearch').addEventListener('input',landList);loadData();
 
@@ -31,8 +65,8 @@ $('#menuToggle').addEventListener('click',()=>{const o=$('#mainNav').classList.t
 const ADMIN_CONFIG={repo:'guindaeyo/realestateofelysian',branch:'main',file:'data.json'};
 const ADMIN_HASH='d0dce33d42fbe3ef37ea9dba8485d0342cae71b1446a1a83a7c1570edc2b1a51';
 const ADMIN_FIELDS={
- houses:[['name','ชื่อบ้าน'],['road','ย่าน','road'],['number','เลขที่บ้าน'],['owner','เจ้าของบ้าน'],['residents','รายชื่อผู้พักอาศัย (หนึ่งชื่อต่อบรรทัด)','lines'],['count','จำนวนผู้พักอาศัย','number']],
- lands:[['name','ชื่อโฉนด / ที่ดิน'],['owner','เจ้าของ'],['residents','รายชื่อผู้พักอาศัย (หนึ่งชื่อต่อบรรทัด)','lines'],['count','จำนวนผู้พักอาศัย','number']],
+ houses:[['name','ชื่อบ้าน'],['road','ย่าน','road'],['number','เลขที่บ้าน'],['owner','เจ้าของบ้าน'],['image','ลิงก์รูปภาพบ้านหลังนี้ (URL)'],['threadUrl','ลิงก์กระทู้บ้านหลังนี้ (URL)'],['residents','รายชื่อผู้พักอาศัย (หนึ่งชื่อต่อบรรทัด)','lines'],['count','จำนวนผู้พักอาศัย','number']],
+ lands:[['name','ชื่อโฉนด / ที่ดิน'],['owner','เจ้าของ'],['threadUrl','ลิงก์กระทู้ (URL)'],['residents','รายชื่อผู้พักอาศัย (หนึ่งชื่อต่อบรรทัด)','lines'],['count','จำนวนผู้พักอาศัย','number']],
  unlocks:[['house','บ้าน / กระทู้'],['applicant','ผู้ยื่นคำร้อง'],['level','ระดับคำร้อง'],['status','สถานะ'],['url','ลิงก์กระทู้']],
  roads:[['id','รหัสย่าน (อังกฤษ ห้ามซ้ำ)'],['name','ชื่อย่าน'],['en','ชื่อภาษาอังกฤษ'],['key','ชื่อย่อ'],['type','ประเภทบ้าน'],['price','ราคา','number'],['capacity','จำนวนคนสูงสุด','number'],['threads','จำนวนกระทู้สูงสุด','number'],['image','URL รูปภาพ'],['description','คำอธิบาย','multiline'],['rooms','รายละเอียดห้อง (หนึ่งบรรทัดต่อรายการ)','lines'],['note','หมายเหตุ','multiline']]
 };
@@ -53,7 +87,7 @@ function setupAdmin(){
   const category=$('#adminCategory').value;if(adminNew){adminNew=false;renderAdminFields();return;}
   const obj=DATA[category][adminIndex];if(!obj)return;
   if(!confirm('ยืนยันการลบรายการนี้?\n'+(obj.name||obj.house||'รายการ')) )return;
-  DATA[category].splice(adminIndex,1);adminIndex=0;adminDirty=true;renderAdminRecords();refreshSite();adminMessage('ลบจากร่างข้อมูลแล้ว กดบันทึกขึ้น GitHub เพื่อเผยแพร่');
+  DATA[category].splice(adminIndex,1);adminIndex=0;DATA.lastUpdated=new Date().toISOString();adminDirty=true;renderAdminRecords();refreshSite();adminMessage('ลบจากร่างข้อมูลแล้ว กดบันทึกขึ้น GitHub เพื่อเผยแพร่');
  });
  $('#adminEditForm').addEventListener('submit',e=>{e.preventDefault();saveAdminForm();});
  $('#adminExport').addEventListener('click',()=>{
@@ -73,15 +107,16 @@ function renderAdminRecords(){
 function renderAdminFields(){
  const category=$('#adminCategory').value, fields=ADMIN_FIELDS[category], item=adminNew?{}:DATA[category][adminIndex]||{};
  $('#adminRecord').disabled=adminNew;
- $('#adminEditForm').innerHTML=fields.map(([key,label,type])=>{
+ $('#adminEditForm').innerHTML='<div class="admin-edit-date span-all"><i data-lucide="clock-3"></i> แก้ไขล่าสุด: '+escapeHTML(timestampText(item.updatedAt))+'</div>'+fields.map(([key,label,type])=>{
   let value=item[key]??'';if(type==='lines')value=Array.isArray(value)?value.join('\n'):String(value);
   const span=type==='multiline'||type==='lines'?' span-all':'';
   let field;
   if(type==='road')field=`<select name="${key}">${[...DATA.roads.map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(([id,name])=>`<option value="${escapeHTML(id)}" ${value===id?'selected':''}>${escapeHTML(name)}</option>`).join('')}</select>`;
   else if(type==='lines'||type==='multiline')field=`<textarea name="${key}" rows="${type==='lines'?'5':'3'}">${escapeHTML(value)}</textarea>`;
   else field=`<input type="${type==='number'?'number':'text'}" ${type==='number'?'min="0" step="1"':''} name="${key}" value="${escapeHTML(value)}">`;
-  return `<label class="${span}">${label}${field}</label>`;
+  return `<label ${category==='houses'&&key==='image'?'id="adminImageField"':''} class="${span}">${label}${field}</label>`;
  }).join('')+'<div class="span-all"><button type="submit" class="gold-button"><i data-lucide="save"></i> '+(adminNew?'เพิ่มรายการนี้':'บันทึกการแก้ไข')+'</button></div>';
+ if(category==='houses'){const roadSelect=$('#adminEditForm select[name=road]');const imageWrap=$('#adminImageField');if(roadSelect&&imageWrap){const toggle=()=>{imageWrap.hidden=roadSelect.value==='other';if(imageWrap.hidden){const input=imageWrap.querySelector('input');if(input)input.value='';}};roadSelect.addEventListener('change',toggle);toggle();}}
  icons();
 }
 function saveAdminForm(){
@@ -90,14 +125,18 @@ function saveAdminForm(){
  const old=adminNew?{}:DATA[category][adminIndex]||{};
  const result={...old};
  for(const [key,label,type] of fields){let value=String(form.get(key)??'').trim();if(type==='number')value=Math.max(0,Number(value)||0);else if(type==='lines')value=value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);result[key]=value;}
+ if(category==='houses'&&result.road==='other')result.image='';
+ if((category==='houses'||category==='lands')&&result.threadUrl&&!safeForumURL(result.threadUrl)){adminMessage('ลิงก์กระทู้ไม่ถูกต้อง กรุณาใช้ URL https://...','error');return;}
+ if(category==='houses'&&result.image){try{const url=new URL(result.image);if(!['https:','http:'].includes(url.protocol))throw new Error('URL');}catch(e){adminMessage('ลิงก์รูปภาพไม่ถูกต้อง กรุณาใช้ URL https://...','error');return;}}
  if(!result.name&&!result.house){adminMessage('กรุณากรอกชื่อรายการ','error');return;}
  if(category==='houses'||category==='lands'){
   result.count=Number(result.count)||result.residents.length;
   if(category==='houses')result.rawResidents=result.residents.map((x,i)=>`${i+1}. ${x}`).join('\n');
  }
  if(category==='roads'&&DATA.roads.some((x,i)=>x.id===result.id&&(adminNew||i!==adminIndex))){adminMessage('รหัสย่านซ้ำกับที่มีอยู่','error');return;}
+ result.updatedAt=new Date().toISOString();
  if(adminNew){DATA[category].push(result);adminIndex=DATA[category].length-1;adminNew=false;}else DATA[category][adminIndex]=result;
- adminDirty=true;renderAdminRecords();refreshSite();adminMessage('บันทึกร่างสำเร็จ — กดบันทึกขึ้น GitHub เพื่อให้ข้อมูลแสดงบนเว็บสำหรับทุกคน','success');
+ DATA.lastUpdated=result.updatedAt;adminDirty=true;renderAdminRecords();refreshSite();adminMessage('บันทึกร่างสำเร็จ — กดบันทึกขึ้น GitHub เพื่อให้ข้อมูลแสดงบนเว็บสำหรับทุกคน','success');
 }
 const encodeBase64=str=>btoa(Array.from(new TextEncoder().encode(str),b=>String.fromCharCode(b)).join(''));
 async function publishAdmin(){
@@ -118,6 +157,6 @@ async function publishAdmin(){
   const payload={message:'Update Elysian property records via admin',content:encodeBase64(JSON.stringify(DATA,null,2)+'\n'),sha:existing.sha,branch:ADMIN_CONFIG.branch};
   const sent=await fetch(url,{method:'PUT',headers,body:JSON.stringify(payload)});
   if(!sent.ok){const info=await sent.json().catch(()=>({}));throw new Error(info.message||'บันทึก GitHub ไม่สำเร็จ ('+sent.status+')');}
-  adminDirty=false;baselineData=JSON.stringify(DATA);adminMessage('เผยแพร่ขึ้น GitHub สำเร็จ! Vercel จะเริ่ม Deploy ใหม่โดยอัตโนมัติ','success');$('#githubToken').value='';
+  adminDirty=false;baselineData=JSON.stringify(DATA);lastDataSignature=baselineData;lastExternalCheck=new Date().toISOString();updateTimestampUI();adminMessage('เผยแพร่ขึ้น GitHub สำเร็จ! Vercel จะเริ่ม Deploy ใหม่โดยอัตโนมัติ','success');$('#githubToken').value='';
  }catch(e){adminMessage('ไม่สำเร็จ: '+e.message,'error');}finally{button.disabled=false;}
 }

@@ -82,3 +82,24 @@ body{font-size:16px}
 /* Hero: retain ELYSIAN ESTATES, remove standalone decorative E */
 .hero-monogram{display:none!important}
 .hero h1 i{font-style:italic;color:var(--gold);font-weight:400}
+
+/* Record freshness and editable property images */
+.update-status{margin:24px clamp(18px,5vw,84px) 0;padding:15px 20px;border:1px solid #65502e;background:#17150f;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#d8c9ae;font-size:15px}
+.update-status>div{display:flex;align-items:center;gap:12px}.update-status svg,.directory-update svg,.record-updated svg,.modal-record-updated svg,.admin-edit-date svg{width:17px;height:17px;color:#c7a465;flex:none}.update-status strong{color:#f4dba5;font-weight:600}.update-status small{color:#b9a887;font-size:13px}
+.directory-update{display:flex;align-items:center;gap:8px;margin:6px 0 20px;color:#cdbd9e;font-size:15px}.directory-update strong{font-weight:600;color:#f2d39b}.record-updated{display:flex;align-items:center;gap:8px;color:#bfae90;font-size:13px;margin-top:12px}.modal-record-updated{display:flex;align-items:center;gap:9px;font-size:15px;color:#e2c28b;border-bottom:1px solid #4d3b24;padding:6px 0 17px}.admin-edit-date{display:flex;align-items:center;gap:9px;color:#dbbd8a;font-size:15px}.admin-edit-form label[hidden]{display:none!important}
+@media(max-width:600px){.update-status{margin:16px 18px 0;padding:14px;font-size:14px}.update-status small{font-size:12px}.directory-update{font-size:13px}}
+
+/* Hero introduction: single line on desktop, legible wrapping on mobile */
+.hero-inner{width:100%;max-width:1600px}
+.hero-desc{max-width:none;width:max-content;max-width:100%;margin:17px auto 29px;text-align:center;white-space:nowrap;font-size:clamp(12px,1.13vw,16px)!important;line-height:1.85}
+@media(max-width:900px){.hero-desc{width:auto;max-width:650px;white-space:normal;font-size:15px!important}}
+
+/* Elysian Estates — vertically centered stat icons and property forum links */
+.stats .stat > span{display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.5;flex-wrap:wrap}
+.stats .stat > span svg{width:17px;height:17px;display:block;flex:none;vertical-align:middle;position:static;transform:none}
+.forum-link-row{margin:20px 0 24px}
+.forum-link-button{display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:48px;padding:12px 20px;border:1px solid #b99962;background:linear-gradient(135deg,#cfae74,#b58e53);color:#16110a!important;font-family:'Bai Jamjuree',sans-serif;font-size:16px;font-weight:700;text-decoration:none;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.forum-link-button:hover{background:#e6c58b;border-color:#f0d6a3;transform:translateY(-1px)}
+.forum-link-button:focus-visible{outline:2px solid #f6deb1;outline-offset:3px}
+.forum-link-button svg{width:18px;height:18px;flex:none}
+@media(max-width:600px){.stats .stat > span{gap:6px;font-size:13px}.stats .stat > span svg{width:16px;height:16px}.forum-link-button{width:100%;font-size:15px}}
