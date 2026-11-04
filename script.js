@@ -44,12 +44,19 @@ const roadNames={pine:'ไพน์วูดส์โร้ด',maple:'เมเ
 let roadFilter='all',lastFocus=null;
 function showView(view){const target=['home','directory','lands','requests','admin'].includes(view)?view:'home';$$('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+target));$$('.nav-link').forEach(x=>x.classList.toggle('active',x.dataset.view===target));$('#mainNav').classList.remove('open');$('#menuToggle').setAttribute('aria-expanded','false');history.replaceState(null,'','#'+target);window.scrollTo({top:0,behavior:'instant'});icons()}
 function stats(){const arr=[['building-2',DATA.houses.length,'ทะเบียนอสังหาริมทรัพย์'],['map-pin',DATA.lands.length,'โฉนดต่างเมือง'],['file-check-2',DATA.unlocks.length,'คำร้องปลดล็อกกระทู้']];$('#summaryStats').innerHTML=arr.map(a=>`<div class="stat"><strong>${fmt(a[1])}</strong><span><i data-lucide="${a[0]}"></i> ${a[2]}</span></div>`).join('')}
-function home(){$('#roadGrid').innerHTML=DATA.roads.map((r,i)=>`<article class="road-card"><div class="road-picture"><img src="${r.image}" alt="${escapeHTML(r.name)}" loading="lazy"><span class="road-number">COLLECTION 0${i+1}</span></div><div class="road-info"><span class="road-en">${r.en}</span><h3>${r.name}</h3><p>${r.description}</p><div class="road-features"><span><i data-lucide="users-round"></i> ${r.capacity} คน</span><span><i data-lucide="messages-square"></i> ${r.threads} กระทู้</span><span><i data-lucide="house"></i> ${r.type}</span></div><div class="road-price-row"><div><small class="price-prefix">ราคาเริ่มต้น</small><strong class="price">$${fmt(r.price)}</strong></div><button class="subtle-btn" data-road="${r.id}">ดูบ้านในย่านนี้ <i data-lucide="arrow-up-right"></i></button></div></div></article>`).join('')}
-function renderFilters(){ $('#houseFilters').innerHTML=[['all','ทั้งหมด'],...DATA.roads.map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(x=>`<button class="chip ${roadFilter===x[0]?'active':''}" data-filter="${x[0]}">${x[1]}</button>`).join('') }
+function home(){$('#roadGrid').innerHTML=sortedRecords(DATA.roads,'roads').map((r,i)=>`<article class="road-card"><div class="road-picture"><img src="${r.image}" alt="${escapeHTML(r.name)}" loading="lazy"><span class="road-number">COLLECTION 0${i+1}</span></div><div class="road-info"><span class="road-en">${r.en}</span><h3>${r.name}</h3><p>${r.description}</p><div class="road-features"><span><i data-lucide="users-round"></i> ${r.capacity} คน</span><span><i data-lucide="messages-square"></i> ${r.threads} กระทู้</span><span><i data-lucide="house"></i> ${r.type}</span></div><div class="road-price-row"><div><small class="price-prefix">ราคาเริ่มต้น</small><strong class="price">$${fmt(r.price)}</strong></div><button class="subtle-btn" data-road="${r.id}">ดูบ้านในย่านนี้ <i data-lucide="arrow-up-right"></i></button></div></div></article>`).join('')}
+function renderFilters(){ $('#houseFilters').innerHTML=[['all','ทั้งหมด'],...sortedRecords(DATA.roads,'roads').map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(x=>`<button class="chip ${roadFilter===x[0]?'active':''}" data-filter="${x[0]}">${x[1]}</button>`).join('') }
 function filtered(q,strings){return strings.some(s=>String(s??'').toLocaleLowerCase().includes(q))}
-// Display-only natural sorting: 2 before 10, with Thai/English alphabetical tie-breakers.
-// Keep original DATA array positions intact so edit/delete actions target the correct record.
+// Display only: fixed neighborhood priority first, then house number and natural name.
+// Do not reorder DATA arrays: the original indexes identify records for editing/deletion.
 const recordCollator=new Intl.Collator(['th','en'],{numeric:true,sensitivity:'base'});
+const ROAD_ORDER=['pine','maple','pumpkin','blossom','other'];
+function roadRank(id){const n=ROAD_ORDER.indexOf(String(id||'').toLowerCase());return n<0?ROAD_ORDER.length:n;}
+function compareRoadIds(a,b){
+ const rank=roadRank(a)-roadRank(b);
+ if(rank)return rank;
+ return recordCollator.compare(roadNames[a]||a||'',roadNames[b]||b||'');
+}
 function recordLabel(item,category){return String(item.name||item.house||item.en||item.id||'');}
 function houseNumber(item){
  const source=String(item.number??'').trim()||String(item.name??'');
@@ -60,16 +67,20 @@ function houseNumber(item){
  return Number.isFinite(number)?number:null;
 }
 function recordCompare(a,b,category){
+ if(category==='roads'){
+  const rank=compareRoadIds(a.id,b.id);
+  if(rank)return rank;
+ }
  if(category==='houses'){
+  // All Pinewoods houses, then Maple, Pumpkins, Blossom, and Other.
+  const roadResult=compareRoadIds(a.road,b.road);
+  if(roadResult)return roadResult;
   const nA=houseNumber(a),nB=houseNumber(b);
   if(nA!==null&&nB!==null&&nA!==nB)return nA-nB;
   if(nA!==null&&nB===null)return -1;
   if(nA===null&&nB!==null)return 1;
-  const roadA=DATA.roads.find(r=>r.id===a.road)?.name||roadNames[a.road]||a.road||'';
-  const roadB=DATA.roads.find(r=>r.id===b.road)?.name||roadNames[b.road]||b.road||'';
-  const roadResult=recordCollator.compare(roadA,roadB);
-  if(roadResult)return roadResult;
  }
+ // Deeds use natural alphanumeric sorting, e.g. Villa 2 before Villa 10.
  return recordCollator.compare(recordLabel(a,category),recordLabel(b,category));
 }
 function sortedRecords(items,category){return [...items].sort((a,b)=>recordCompare(a,b,category));}
@@ -159,7 +170,7 @@ function renderAdminFields(){
   let value=item[key]??'';if(type==='lines')value=Array.isArray(value)?value.join('\n'):String(value);
   const span=type==='multiline'||type==='lines'?' span-all':'';
   let field;
-  if(type==='road')field=`<select name="${key}">${[...DATA.roads.map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(([id,name])=>`<option value="${escapeHTML(id)}" ${value===id?'selected':''}>${escapeHTML(name)}</option>`).join('')}</select>`;
+  if(type==='road')field=`<select name="${key}">${[...sortedRecords(DATA.roads,'roads').map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(([id,name])=>`<option value="${escapeHTML(id)}" ${value===id?'selected':''}>${escapeHTML(name)}</option>`).join('')}</select>`;
   else if(type==='lines'||type==='multiline')field=`<textarea name="${key}" rows="${type==='lines'?'5':'3'}">${escapeHTML(value)}</textarea>`;
   else field=`<input type="${type==='number'?'number':'text'}" ${type==='number'?'min="0" step="1"':''} name="${key}" value="${escapeHTML(value)}">`;
   return `<label ${category==='houses'&&key==='image'?'id="adminImageField"':''} class="${span}">${label}${field}</label>`;
