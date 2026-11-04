@@ -160,15 +160,13 @@
       "count": 3,
       "owner": "Jonathan K. Munson",
       "residents": [
-        "Jonathan K. Munson",
-        "Joseph K. Munson",
-        "Johann T. Munson"
+        "Jonathan K. Munson"
       ],
-      "rawResidents": "1. Jonathan K. Munson\n2. Joseph K. Munson\n3. Johann T. Munson",
+      "rawResidents": "1. Jonathan K. Munson",
       "number": "6",
-      "updatedAt": null,
-      "image": "",
-      "threadUrl": ""
+      "updatedAt": "2026-11-04T19:38:37.019Z",
+      "image": "https://iili.io/F0GueR4.png",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=414"
     },
     {
       "name": "บ้านเลขที่ 7 ไพน์วูดส์โร้ด",
@@ -726,5 +724,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T19:37:19.640Z"
+  "lastUpdated": "2026-11-04T19:38:37.019Z"
 }
