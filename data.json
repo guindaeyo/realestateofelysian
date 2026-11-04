@@ -1,0 +1,607 @@
+{
+  "roads": [
+    {
+      "id": "pine",
+      "name": "ไพน์วูดส์โร้ด",
+      "en": "PINEWOODS ROAD",
+      "key": "ไพน์วูดส์",
+      "type": "บ้านคอนเทนเนอร์",
+      "price": 20000,
+      "capacity": 4,
+      "threads": 4,
+      "image": "https://i.imgur.com/gWJrzSv.png",
+      "description": "ตู้คอนเทนเนอร์เก่าที่ปรับปรุงเป็นบ้านพักอาศัยท่ามกลางธรรมชาติและแนวต้นสน สำหรับผู้ที่ชื่นชอบการออกแบบแตกต่างไม่เหมือนใคร",
+      "rooms": [
+        "ห้องนั่งเล่นและห้องครัว 1 ห้อง",
+        "ห้องเปล่า 3 ห้อง (ปรับเปลี่ยนการใช้งานได้)"
+      ],
+      "note": "สามารถเพิ่มห้องได้ ห้องละ $2,500 สูงสุด 2 ห้อง ภาพประกอบกระทู้ควรเป็นบ้านคอนเทนเนอร์"
+    },
+    {
+      "id": "maple",
+      "name": "เมเปิลโร้ด",
+      "en": "MAPLE ROAD",
+      "key": "เมเปิล",
+      "type": "บ้านเดี่ยวชั้นเดียว",
+      "price": 25000,
+      "capacity": 4,
+      "threads": 6,
+      "image": "https://i.imgur.com/pvKzZGg.png",
+      "description": "บ้านเดี่ยวชั้นเดียวขนาดกะทัดรัด จุดเริ่มต้นของการมีบ้านเป็นของตัวเองในบรรยากาศเป็นมิตรและมีระบบรักษาความปลอดภัย",
+      "rooms": [
+        "ห้องนั่งเล่น 1 ห้อง",
+        "ห้องนอนใหญ่ 2 ห้อง",
+        "ห้องครัว 1 ห้อง",
+        "ห้องเปล่า 2 ห้อง"
+      ],
+      "note": "ภาพประกอบกระทู้ควรเหมาะสมกับบ้านเดี่ยวชั้นเดียว"
+    },
+    {
+      "id": "pumpkin",
+      "name": "พัมป์กินส์โร้ด",
+      "en": "PUMPKINS ROAD",
+      "key": "พัมป์กินส์",
+      "type": "ทาวน์เฮาส์",
+      "price": 50000,
+      "capacity": 5,
+      "threads": 8,
+      "image": "https://i.imgur.com/Kx8JkN4.png",
+      "description": "บ้านทาวน์เฮาส์รั้วติดกันแสนอบอุ่น คัดสรรมาอย่างดีเพื่อคุณภาพการใช้ชีวิตอย่างครบครัน",
+      "rooms": [
+        "ห้องนั่งเล่น 1 ห้อง",
+        "ห้องครัว 1 ห้อง",
+        "ห้องนอนใหญ่ 3 ห้อง",
+        "ห้องเปล่า 3 ห้อง"
+      ],
+      "note": "ภาพประกอบกระทู้ควรเหมาะสมกับบ้านทาวน์เฮาส์"
+    },
+    {
+      "id": "blossom",
+      "name": "บลอสซัมโร้ด",
+      "en": "BLOSSOM ROAD",
+      "key": "บลอสซัม",
+      "type": "บ้านเดี่ยวสองชั้น",
+      "price": 100000,
+      "capacity": 7,
+      "threads": 15,
+      "image": "https://i.imgur.com/b6qSFZt.png",
+      "description": "บ้านเดี่ยวสองชั้นในทำเลและบรรยากาศสุดพิเศษ มีพื้นที่ให้จัดสรรได้ตามความฝันของผู้พักอาศัย",
+      "rooms": [
+        "สามารถจัดสรรกระทู้ภายในบ้านได้ตามใจชอบ ภายในจำนวนที่กำหนด"
+      ],
+      "note": "ภาพประกอบกระทู้ควรเหมาะสมกับบ้านเดี่ยวสองชั้น"
+    }
+  ],
+  "houses": [
+    {
+      "name": "บ้านเลขที่ 1 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 2,
+      "owner": "Vante Theodore",
+      "residents": [
+        "Weller Macdemia",
+        "Veromar V. Franchester"
+      ],
+      "rawResidents": "1. Weller Macdemia \n2. Veromar V. Franchester",
+      "number": "1"
+    },
+    {
+      "name": "บ้านเลขที่ 2 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 2,
+      "owner": "Klaus T. Lance",
+      "residents": [
+        "Klaus T. Lance",
+        "Daphne Agreste"
+      ],
+      "rawResidents": "1. Klaus T. Lance\n2. Daphne Agreste",
+      "number": "2"
+    },
+    {
+      "name": "บ้านเลขที่ 3 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 3,
+      "owner": "Bethany L. Flozentine",
+      "residents": [
+        "Bethany L. Flozentine",
+        "Blue Willoughby",
+        "Lancelot Kalzer"
+      ],
+      "rawResidents": "1. Bethany L. Flozentine\n2. Blue Willoughby\n3. Lancelot Kalzer",
+      "number": "3"
+    },
+    {
+      "name": "บ้านเลขที่ 4 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 1,
+      "owner": "Miller L. Alan",
+      "residents": [
+        "Miller L. Alan"
+      ],
+      "rawResidents": "1. Miller L. Alan",
+      "number": "4"
+    },
+    {
+      "name": "บ้านเลขที่ 5 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 3,
+      "owner": "Rhea G. Stromblad",
+      "residents": [
+        "Rhea G. Stromblad",
+        "Jarfar Terenes",
+        "Cisenm W. Moire"
+      ],
+      "rawResidents": "1. Rhea G. Stromblad\n2. Jarfar Terenes\n3. Cisenm W. Moire",
+      "number": "5"
+    },
+    {
+      "name": "บ้านเลขที่ 6 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 3,
+      "owner": "Jonathan K. Munson",
+      "residents": [
+        "Jonathan K. Munson",
+        "Joseph K. Munson",
+        "Johann T. Munson"
+      ],
+      "rawResidents": "1. Jonathan K. Munson\n2. Joseph K. Munson\n3. Johann T. Munson",
+      "number": "6"
+    },
+    {
+      "name": "บ้านเลขที่ 7 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "count": 1,
+      "owner": "Hans X. Frost",
+      "residents": [
+        "Hans X. Frost"
+      ],
+      "rawResidents": "1. Hans X. Frost",
+      "number": "7"
+    },
+    {
+      "name": "บ้านเลขที่ 1 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 2,
+      "owner": "Zachary K. Laine",
+      "residents": [
+        "Zachary K. Laine",
+        "Zephyr Laine"
+      ],
+      "rawResidents": "1. Zachary K. Laine \n2. Zephyr Laine\n3. -\n4. -",
+      "number": "1"
+    },
+    {
+      "name": "บ้านเลขที่ 2 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 4,
+      "owner": "Daphne Agreste",
+      "residents": [
+        "Daphne Agreste",
+        "Gwen Darcy",
+        "Kamin Jones",
+        "Valeska I. Lorentzen"
+      ],
+      "rawResidents": "1. Daphne Agreste \n2. Gwen Darcy\n3. Kamin Jones\n4. Valeska I. Lorentzen",
+      "number": "2"
+    },
+    {
+      "name": "บ้านเลขที่ 3 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 3,
+      "owner": "Soraria Archer",
+      "residents": [
+        "Soraria Archer",
+        "Ninette Archer",
+        "Marcus Archer"
+      ],
+      "rawResidents": "1. Soraria Archer \n2. Ninette Archer\n3. Marcus Archer",
+      "number": "3"
+    },
+    {
+      "name": "บ้านเลขที่ 4 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 4,
+      "owner": "Quorlan Sam",
+      "residents": [
+        "Quorlan Sam",
+        "Jenesis Kim",
+        "Alua Q. Bubblecrown",
+        "Leigh H. Saunderson"
+      ],
+      "rawResidents": "1. Quorlan Sam \n2. Jenesis Kim\n3. Alua Q. Bubblecrown\n4. Leigh H. Saunderson",
+      "number": "4"
+    },
+    {
+      "name": "บ้านเลขที่ 5 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 4,
+      "owner": "Quineth S. Bloodworth",
+      "residents": [
+        "Quineth S. Bloodworth",
+        "Lina E. Colloway",
+        "Marine Pearlquoise",
+        "Arthur G. Bloodworth"
+      ],
+      "rawResidents": "1. Quineth S. Bloodworth\n2. Lina E. Colloway\n3. Marine Pearlquoise\n4. Arthur G. Bloodworth",
+      "number": "5"
+    },
+    {
+      "name": "บ้านเลขที่ 6 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 4,
+      "owner": "Mikael F. Kaiser",
+      "residents": [
+        "Mikael F. Kaiser",
+        "Lilith P. Kaiser",
+        "Estevan Kaiser",
+        "Gianna M. Palmyra"
+      ],
+      "rawResidents": "1. Mikael F. Kaiser\n2. Lilith P. Kaiser\n3. Estevan Kaiser\n4. Gianna M. Palmyra",
+      "number": "6"
+    },
+    {
+      "name": "บ้านเลขที่ 7 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 2,
+      "owner": "Lancelot Kalzer",
+      "residents": [
+        "Lancelot Kalzer",
+        "Blue Willoughby"
+      ],
+      "rawResidents": "1. Lancelot Kalzer\n2. Blue Willoughby",
+      "number": "7"
+    },
+    {
+      "name": "บ้านเลขที่ 8 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 2,
+      "owner": "Ray Marmoris",
+      "residents": [
+        "Ray Marmoris",
+        "Zane Marmoris"
+      ],
+      "rawResidents": "1. Ray Marmoris \n2. Zane Marmoris",
+      "number": "8"
+    },
+    {
+      "name": "บ้านเลขที่ 9 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 4,
+      "owner": "Ralph E. Aquaborne",
+      "residents": [
+        "Ciara R. Veronica",
+        "Asteria Leuruna",
+        "Jerome Han",
+        "Seonbi L. Evanson"
+      ],
+      "rawResidents": "1. Ciara R. Veronica\n2. Asteria Leuruna\n3. Jerome Han\n4. Seonbi L. Evanson",
+      "number": "9"
+    },
+    {
+      "name": "บ้านเลขที่ 10 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 3,
+      "owner": "Delphinus M. Quartier",
+      "residents": [
+        "Delphinus M. Quartier",
+        "Charlotte L. Strelitz",
+        "Maddox P. Yoon"
+      ],
+      "rawResidents": "1. Delphinus M. Quartier\n2. Charlotte L. Strelitz\n3. Maddox P. Yoon",
+      "number": "10"
+    },
+    {
+      "name": "บ้านเลขที่ 43 เมเปิลโร้ด",
+      "road": "maple",
+      "count": 1,
+      "owner": "Benjamin McCartney",
+      "residents": [
+        "Benjamin McCartney"
+      ],
+      "rawResidents": "1. Benjamin McCartney",
+      "number": "43"
+    },
+    {
+      "name": "บ้านเลขที่ 1 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "road": "pumpkin",
+      "count": 3,
+      "owner": "Bethany L. Flozentine",
+      "residents": [
+        "Bethany L. Flozentine",
+        "Chandler C. Agreste",
+        "Floyd R. Frost"
+      ],
+      "rawResidents": "1. Bethany L. Flozentine \n2. Chandler C. Agreste\n3. Floyd R. Frost",
+      "number": "1"
+    },
+    {
+      "name": "บ้านเลขที่ 2 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "road": "pumpkin",
+      "count": 4,
+      "owner": "Raincy R. Hood",
+      "residents": [
+        "Raincy R. Hood",
+        "Delphinus M. Quartier",
+        "Khram Chayangkun",
+        "Kim Wendy"
+      ],
+      "rawResidents": "1. Raincy R. Hood\n2. Delphinus M. Quartier\n3. Khram Chayangkun\n4. Kim Wendy",
+      "number": "2"
+    },
+    {
+      "name": "บ้านเลขที่ 3 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "road": "pumpkin",
+      "count": 5,
+      "owner": "Ashlyn Gonzalez",
+      "residents": [
+        "Ashlyn Gonzalez",
+        "Rowena T. Frost",
+        "Genevieve V. Frost",
+        "Blair Vernier",
+        "Hans X. Frost"
+      ],
+      "rawResidents": "1. Ashlyn Gonzalez\n2. Rowena T. Frost\n3. Genevieve V. Frost\n4. Blair Vernier\n5. Hans X. Frost",
+      "number": "3"
+    },
+    {
+      "name": "บ้านเลขที่ 4 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "road": "pumpkin",
+      "count": 5,
+      "owner": "Ralph E. Aquaborne",
+      "residents": [
+        "Ralph E. Aquaborne",
+        "Clint Osborn",
+        "Levy F. Desrosiers",
+        "Lucine F. Varner",
+        "Ravenna Roscente"
+      ],
+      "rawResidents": "1. Ralph E. Aquaborne\n2. Clint Osborn\n3. Levy F. Desrosiers\n4. Lucine F. Varner\n5. Ravenna Roscente",
+      "number": "4"
+    },
+    {
+      "name": "บ้านเลขที่ 5 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "road": "pumpkin",
+      "count": 5,
+      "owner": "Quorlan Sam",
+      "residents": [
+        "Quorlan Sam",
+        "Jenesis Kim",
+        "Alua Q. Bubblecrown",
+        "Leigh H. Saunderson",
+        "Xu Xiaoyu"
+      ],
+      "rawResidents": "1. Quorlan Sam \n2. Jenesis Kim\n3. Alua Q. Bubblecrown\n4. Leigh H. Saunderson\n5. Xu Xiaoyu",
+      "number": "5"
+    },
+    {
+      "name": "บ้านเลขที่ 8 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "road": "pumpkin",
+      "count": 3,
+      "owner": "Eirene I. Alanna",
+      "residents": [
+        "Eirene I. Alanna",
+        "Raphael Lefebvre",
+        "Valren Crimsonveil"
+      ],
+      "rawResidents": "1. Eirene I. Alanna\n2. Raphael Lefebvre\n3. Valren Crimsonveil",
+      "number": "8"
+    },
+    {
+      "name": "บ้านเลขที่ 1 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 5,
+      "owner": "Zinnia A. Lewis",
+      "residents": [
+        "Zinnia A. Lewis",
+        "Logan D. Schneider",
+        "Miller L. Alan",
+        "Icarus V. Deluar",
+        "Nicolas S. Saladin"
+      ],
+      "rawResidents": "1. Zinnia A. Lewis \n2. Logan D. Schneider\n3. Miller L. Alan\n4. Icarus V. Deluar\n5. Nicolas S. Saladin",
+      "number": "1"
+    },
+    {
+      "name": "บ้านเลขที่ 2 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 2,
+      "owner": "Klaus T. Lance",
+      "residents": [
+        "Klaus T. Lance",
+        "Daphne Agreste"
+      ],
+      "rawResidents": "1. Klaus T. Lance \n2. Daphne Agreste",
+      "number": "2"
+    },
+    {
+      "name": "บ้านเลขที่ 3 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 4,
+      "owner": "Desdemona E. Zeth",
+      "residents": [
+        "Desdemona E. Zeth",
+        "Bellanie Avendell",
+        "Josephine Starling",
+        "Zoe Cameron"
+      ],
+      "rawResidents": "1. Desdemona E. Zeth \n2. Bellanie Avendell\n3. Josephine Starling\n4. Zoe Cameron",
+      "number": "3"
+    },
+    {
+      "name": "บ้านเลขที่ 4 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 5,
+      "owner": "Richter Chasez",
+      "residents": [
+        "Richter Chasez",
+        "Reigar Ferez",
+        "Rexxyr Dawnbringer",
+        "Victor Chasez",
+        "Kaiser Zenbulonni"
+      ],
+      "rawResidents": "1. Richter Chasez \n2. Reigar Ferez\n3. Rexxyr Dawnbringer\n4. Victor Chasez\n5. Kaiser Zenbulonni",
+      "number": "4"
+    },
+    {
+      "name": "บ้านเลขที่ 5 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 7,
+      "owner": "Violette C. Leclaire",
+      "residents": [
+        "Violette C. Leclaire",
+        "Veronica L. Legarius",
+        "Blair Vernier",
+        "Bluechess S. Qarvendish",
+        "Mariabelle I. Frost",
+        "Ariadne G. Sullivan",
+        "Rowena T. Frost"
+      ],
+      "rawResidents": "1. Violette C. Leclaire \n2. Veronica L. Legarius\n3. Blair Vernier\n4. Bluechess S. Qarvendish\n5. Mariabelle I. Frost\n6. Ariadne G. Sullivan\n7. Rowena T. Frost",
+      "number": "5"
+    },
+    {
+      "name": "บ้านเลขที่ 6 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 3,
+      "owner": "Jewel Zimmonne",
+      "residents": [
+        "Jewel Zimmonne",
+        "Laura Tanner",
+        "Dylan Cheng"
+      ],
+      "rawResidents": "1. Jewel Zimmonne\n2. Laura Tanner\n3. Dylan Cheng",
+      "number": "6"
+    },
+    {
+      "name": "บ้านเลขที่ 7 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": 4,
+      "owner": "Soraria Martinez",
+      "residents": [
+        "Soraria Martinez",
+        "Marcus Martinez",
+        "Zachary K. Laine",
+        "Zephyr Laine"
+      ],
+      "rawResidents": "1. Soraria Martinez \n2. Marcus Martinez\n3. Zachary K. Laine\n4. Zephyr Laine",
+      "number": "7"
+    },
+    {
+      "name": "บ้านเลขที่ 13 บลอสซัมโร้ด",
+      "road": "blossom",
+      "count": "?",
+      "owner": "?",
+      "residents": [],
+      "rawResidents": "?",
+      "number": "13"
+    },
+    {
+      "name": "เพิงโหยหวน",
+      "road": "other",
+      "count": 1,
+      "owner": "Pinkberry Perlman",
+      "residents": [
+        "Pinkberry Perlman"
+      ],
+      "rawResidents": "1. Pinkberry Perlman ",
+      "number": ""
+    },
+    {
+      "name": "Laurfera",
+      "road": "other",
+      "count": 2,
+      "owner": "Klaus T. Lance",
+      "residents": [
+        "Klaus T. Lance",
+        "Daphne Agreste"
+      ],
+      "rawResidents": "1. Klaus T. Lance\n2. Daphne Agreste",
+      "number": ""
+    },
+    {
+      "name": "The Honeywood Cottage",
+      "road": "other",
+      "count": 1,
+      "owner": "Bethany L. Flozentine",
+      "residents": [
+        "Bethany L. Flozentine"
+      ],
+      "rawResidents": "1. Bethany L. Flozentine",
+      "number": ""
+    },
+    {
+      "name": "Avalon",
+      "road": "other",
+      "count": 1,
+      "owner": "Nyx De Lacroix",
+      "residents": [
+        "Nyx De Lacroix"
+      ],
+      "rawResidents": "1. Nyx De Lacroix ",
+      "number": ""
+    }
+  ],
+  "lands": [
+    {
+      "name": "Malibu Villa 01",
+      "count": 1,
+      "owner": "Bethany L. Flozentine",
+      "residents": [
+        "Bethany L. Flozentine"
+      ]
+    },
+    {
+      "name": "Malibu Villa 02",
+      "count": 2,
+      "owner": "Leigh H. Saunderson",
+      "residents": [
+        "Leigh H. Saunderson",
+        "Cisenm W. Moire"
+      ]
+    },
+    {
+      "name": "Malibu Villa 03",
+      "count": 1,
+      "owner": "Miyazaki Kana",
+      "residents": [
+        "Miyazaki Kana"
+      ]
+    },
+    {
+      "name": "Stellar Paradise 01",
+      "count": 4,
+      "owner": "Ravenna Roscente (เจ้าของร่วม)",
+      "residents": [
+        "Ravenna Roscente",
+        "Lucine F. Varner",
+        "Ralph E. Aquaborne",
+        "Lunetta Sam"
+      ]
+    },
+    {
+      "name": "Stellar Paradise 02",
+      "count": 1,
+      "owner": "Quinn A. Vyacheslav (เจ้าของร่วม)",
+      "residents": [
+        "Quinn A. Vyacheslav"
+      ]
+    },
+    {
+      "name": "Stellar Paradise 03",
+      "count": 1,
+      "owner": "Morticia R. Frost (เจ้าของร่วม)",
+      "residents": [
+        "Morticia R. Frost"
+      ]
+    }
+  ],
+  "unlocks": [
+    {
+      "house": "บ้านเลขที่ 3 พัมป์กินส์โร้ดทาวน์เฮาส์",
+      "applicant": "Ashlyn Gonzalez",
+      "level": "ขั้นที่ 2 จำนวน 2 กระทู้",
+      "url": "https://roleplayth.com/showthread.php?tid=6022&pid=932530#pid932530",
+      "status": "ผ่าน"
+    }
+  ]
+}
