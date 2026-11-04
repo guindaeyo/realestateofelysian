@@ -675,6 +675,22 @@
       "count": 1,
       "rawResidents": "1. Eric Hawkins",
       "updatedAt": "2026-11-04T19:48:34.754Z"
+    },
+    {
+      "name": "บ้านเลขที่ 11 เมเปิลโร้ด",
+      "road": "maple",
+      "number": "11",
+      "owner": "Yoshikawa M. Kairyu",
+      "image": "https://iili.io/CqVgrcG.png",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=470",
+      "residents": [
+        "Yoshikawa M. Kairyu",
+        "Olivia R. Dickerson",
+        "Jacob D. Zhang"
+      ],
+      "count": 3,
+      "rawResidents": "1. Yoshikawa M. Kairyu\n2. Olivia R. Dickerson\n3. Jacob D. Zhang",
+      "updatedAt": "2026-11-04T20:04:20.960Z"
     }
   ],
   "lands": [
@@ -753,5 +769,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T20:02:56.444Z"
+  "lastUpdated": "2026-11-04T20:04:20.960Z"
 }
