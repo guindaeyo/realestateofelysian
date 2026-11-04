@@ -695,6 +695,22 @@
       "count": 3,
       "rawResidents": "1. Yoshikawa M. Kairyu\n2. Olivia R. Dickerson\n3. Jacob D. Zhang",
       "updatedAt": "2026-11-04T20:04:20.960Z"
+    },
+    {
+      "name": "Friedenheim",
+      "road": "other",
+      "number": "",
+      "owner": "Mikael F. Kaiser",
+      "image": "",
+      "threadUrl": "https://roleplayth.com/showthread.php?tid=6920",
+      "residents": [
+        "Mikael F. Kaiser",
+        "Lilith P. Kaiser",
+        "Ferist F. Spencer"
+      ],
+      "count": 3,
+      "rawResidents": "1. Mikael F. Kaiser\n2. Lilith P. Kaiser\n3. Ferist F. Spencer",
+      "updatedAt": "2026-11-04T20:28:55.388Z"
     }
   ],
   "lands": [
@@ -773,5 +789,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T20:28:00.610Z"
+  "lastUpdated": "2026-11-04T20:28:55.388Z"
 }
