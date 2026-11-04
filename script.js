@@ -47,8 +47,35 @@ function stats(){const arr=[['building-2',DATA.houses.length,'ทะเบีย
 function home(){$('#roadGrid').innerHTML=DATA.roads.map((r,i)=>`<article class="road-card"><div class="road-picture"><img src="${r.image}" alt="${escapeHTML(r.name)}" loading="lazy"><span class="road-number">COLLECTION 0${i+1}</span></div><div class="road-info"><span class="road-en">${r.en}</span><h3>${r.name}</h3><p>${r.description}</p><div class="road-features"><span><i data-lucide="users-round"></i> ${r.capacity} คน</span><span><i data-lucide="messages-square"></i> ${r.threads} กระทู้</span><span><i data-lucide="house"></i> ${r.type}</span></div><div class="road-price-row"><div><small class="price-prefix">ราคาเริ่มต้น</small><strong class="price">$${fmt(r.price)}</strong></div><button class="subtle-btn" data-road="${r.id}">ดูบ้านในย่านนี้ <i data-lucide="arrow-up-right"></i></button></div></div></article>`).join('')}
 function renderFilters(){ $('#houseFilters').innerHTML=[['all','ทั้งหมด'],...DATA.roads.map(x=>[x.id,x.name]),['other','อื่น ๆ']].map(x=>`<button class="chip ${roadFilter===x[0]?'active':''}" data-filter="${x[0]}">${x[1]}</button>`).join('') }
 function filtered(q,strings){return strings.some(s=>String(s??'').toLocaleLowerCase().includes(q))}
-function houseList(){const q=$('#houseSearch').value.trim().toLocaleLowerCase();const rows=DATA.houses.filter(x=>(roadFilter==='all'||roadFilter===x.road)&&filtered(q,[x.name,x.owner,x.rawResidents,roadNames[x.road]]));$('#houseResultCount').textContent=`พบ ${rows.length} รายการ`;$('#houseList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="house" data-id="${DATA.houses.indexOf(x)}"><span class="record-top"><span class="record-type">${escapeHTML(roadNames[x.road])}</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูผู้พักอาศัย</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
-function landList(){const q=$('#landSearch').value.trim().toLocaleLowerCase();const rows=DATA.lands.filter(x=>filtered(q,[x.name,x.owner,x.residents.join(' ')]));$('#landResultCount').textContent=`พบ ${rows.length} โฉนด`;$('#landList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="land" data-id="${DATA.lands.indexOf(x)}"><span class="record-top"><span class="record-type">OUT-OF-TOWN DEED</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูรายชื่อ</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
+// Display-only natural sorting: 2 before 10, with Thai/English alphabetical tie-breakers.
+// Keep original DATA array positions intact so edit/delete actions target the correct record.
+const recordCollator=new Intl.Collator(['th','en'],{numeric:true,sensitivity:'base'});
+function recordLabel(item,category){return String(item.name||item.house||item.en||item.id||'');}
+function houseNumber(item){
+ const source=String(item.number??'').trim()||String(item.name??'');
+ const match=source.match(/[0-9๐-๙]+/);
+ if(!match)return null;
+ const digits=match[0].replace(/[๐-๙]/g,c=>String('๐๑๒๓๔๕๖๗๘๙'.indexOf(c)));
+ const number=Number(digits);
+ return Number.isFinite(number)?number:null;
+}
+function recordCompare(a,b,category){
+ if(category==='houses'){
+  const nA=houseNumber(a),nB=houseNumber(b);
+  if(nA!==null&&nB!==null&&nA!==nB)return nA-nB;
+  if(nA!==null&&nB===null)return -1;
+  if(nA===null&&nB!==null)return 1;
+  const roadA=DATA.roads.find(r=>r.id===a.road)?.name||roadNames[a.road]||a.road||'';
+  const roadB=DATA.roads.find(r=>r.id===b.road)?.name||roadNames[b.road]||b.road||'';
+  const roadResult=recordCollator.compare(roadA,roadB);
+  if(roadResult)return roadResult;
+ }
+ return recordCollator.compare(recordLabel(a,category),recordLabel(b,category));
+}
+function sortedRecords(items,category){return [...items].sort((a,b)=>recordCompare(a,b,category));}
+
+function houseList(){const q=$('#houseSearch').value.trim().toLocaleLowerCase();const rows=sortedRecords(DATA.houses.filter(x=>(roadFilter==='all'||roadFilter===x.road)&&filtered(q,[x.name,x.owner,x.rawResidents,roadNames[x.road]])),'houses');$('#houseResultCount').textContent=`พบ ${rows.length} รายการ`;$('#houseList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="house" data-id="${DATA.houses.indexOf(x)}"><span class="record-top"><span class="record-type">${escapeHTML(roadNames[x.road])}</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูผู้พักอาศัย</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
+function landList(){const q=$('#landSearch').value.trim().toLocaleLowerCase();const rows=sortedRecords(DATA.lands.filter(x=>filtered(q,[x.name,x.owner,x.residents.join(' ')])),'lands');$('#landResultCount').textContent=`พบ ${rows.length} โฉนด`;$('#landList').innerHTML=rows.length?rows.map(x=>`<button class="record-card" data-kind="land" data-id="${DATA.lands.indexOf(x)}"><span class="record-top"><span class="record-type">OUT-OF-TOWN DEED</span><i data-lucide="arrow-up-right"></i></span><h3>${escapeHTML(x.name)}</h3><span class="record-owner"><i data-lucide="user-round"></i> ${escapeHTML(x.owner)}</span><span class="record-foot"><span><i data-lucide="users-round"></i> ${escapeHTML(x.count)} คน</span><b>ดูรายชื่อ</b></span></button>`).join(''):'<div class="empty">ไม่พบรายการที่ตรงกับคำค้นหา</div>';icons()}
 function requestList(){$('#requestList').innerHTML=DATA.unlocks.map(x=>`<article class="request-card"><span class="overline">APPROVAL RECORD</span><h3>${escapeHTML(x.house)}</h3><div class="request-meta"><span>ผู้ยื่นคำร้อง: ${escapeHTML(x.applicant)}</span><span>${escapeHTML(x.level)}</span><span class="status"><i data-lucide="check-circle-2"></i> ${escapeHTML(x.status)}</span></div><a href="${escapeHTML(x.url)}" target="_blank" rel="noopener noreferrer">เปิดกระทู้คำร้อง <i data-lucide="external-link"></i></a></article>`).join('');icons()}
 function safeForumURL(value){
  try{const url=new URL(String(value||'').trim());return ['https:','http:'].includes(url.protocol)?url.href:'';}catch{return '';}
@@ -118,8 +145,11 @@ function setupAdmin(){
 function renderAdminRecords(){
  const category=$('#adminCategory').value;
  const items=DATA[category]||[];
- $('#adminRecord').innerHTML=items.map((item,i)=>`<option value="${i}">${escapeHTML(item.name||item.house||'รายการที่ '+(i+1))}</option>`).join('');
- adminIndex=Math.min(adminIndex,Math.max(0,items.length-1));$('#adminRecord').value=String(adminIndex);
+ const sorted=items.map((item,i)=>({item,i})).sort((a,b)=>recordCompare(a.item,b.item,category));
+ $('#adminRecord').innerHTML=sorted.map(({item,i})=>`<option value="${i}">${escapeHTML(item.name||item.house||'รายการที่ '+(i+1))}</option>`).join('');
+ if(!items.length)adminIndex=0;
+ else if(adminIndex<0||adminIndex>=items.length)adminIndex=sorted[0].i;
+ $('#adminRecord').value=String(adminIndex);
  renderAdminFields();icons();
 }
 function renderAdminFields(){
