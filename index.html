@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0a08">
+  <meta name="description" content="ข้อมูลกองอสังหาริมทรัพย์แห่งเอลิเชียน — รายละเอียดบ้าน ราคา และข้อกำหนดการอยู่อาศัย">
+  <title>Elysian Real Estate — กองอสังหาริมทรัพย์</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="กลับไปหน้าแรก">
+        <span class="brand-icon" aria-hidden="true">✦</span>
+        <span class="brand-name"><small>ELYSIAN • PROPERTY COLLECTION</small><strong>REAL ESTATE</strong></span>
+      </a>
+      <nav class="nav" aria-label="เมนูหลัก">
+        <a href="#properties">อสังหาริมทรัพย์</a>
+        <a href="#guidelines">ข้อควรทราบ</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="top">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="eyebrow"><span class="dot"></span> THE ELYSIAN COLLECTION</p>
+        <h1 id="hero-title">THE ART OF <em>LIVING.</em></h1>
+        <div class="hero-rule"><span>✦</span></div>
+        <p class="hero-thai">กองอสังหาริมทรัพย์</p>
+        <p class="hero-description">ค้นพบบ้านที่เหมาะกับเรื่องราวของคุณในเอลิเชียน ตั้งแต่บ้านคอนเทนเนอร์กลางธรรมชาติไปจนถึงบ้านเดี่ยวสองชั้น พร้อมรายละเอียดราคาและข้อกำหนดของแต่ละพื้นที่</p>
+        <a class="explore-link" href="#properties">EXPLORE THE COLLECTION <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-bottom"><span>ESTATE DIRECTORY</span><span>01 — 04</span></div>
+    </section>
+
+    <section id="properties" class="properties container" aria-labelledby="properties-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">CURATED RESIDENCES</p><h2 id="properties-title">Our <em>Properties</em></h2></div>
+        <p>เลือกสำรวจรายละเอียดอสังหาริมทรัพย์ทั้ง 4 ประเภท</p>
+      </div>
+
+      <div class="property-grid">
+        <article class="property-card" id="pinewoods">
+          <div class="property-media"><img src="https://i.imgur.com/gWJrzSv.png" alt="บ้านคอนเทนเนอร์ ไพน์วูดส์โร้ด" loading="lazy"><span class="type-tag">01 / CONTAINER HOUSE</span></div>
+          <div class="property-body">
+            <div class="title-line"><div><span class="property-category">PINEWOODS ROAD</span><h3>ไพน์วูดส์โร้ด</h3></div><strong class="price">$20,000</strong></div>
+            <p class="description">ตู้คอนเทนเนอร์เก่าที่ปรับปรุงให้เป็นบ้านสำหรับอยู่อาศัย ท่ามกลางธรรมชาติและต้นสนจนย่านนี้ถูกเรียกอย่างลำลองว่าไพน์วูดส์โร้ด เหมาะสำหรับคนที่ชอบดีไซน์เก๋ เท่ และแหวกแนว</p>
+            <div class="metrics"><div><strong>04</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>04</strong><span>กระทู้ต่อหลัง</span></div><div><strong>03</strong><span>ห้องเปล่า</span></div></div>
+            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-pinewoods"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
+            <div class="property-detail" id="detail-pinewoods" hidden>
+              <h4>รายละเอียดและข้อกำหนด</h4>
+              <p>จำนวนผู้พักอาศัยไม่เกิน 4 คน และจำกัดไม่เกิน 4 กระทู้ในฟอรั่มไพน์วูดส์โร้ดต่อหนึ่งหลัง</p>
+              <ul><li>ห้องนั่งเล่นและห้องครัว 1 ห้อง</li><li>ห้องเปล่า 3 ห้อง สามารถใช้เป็นห้องอะไรก็ได้</li><li>ชำระเงินเพิ่ม <strong>$2,500</strong> ต่อ 1 ห้อง เพื่อขอเพิ่มห้องได้สูงสุด 2 ห้อง</li></ul>
+              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านคอนเทนเนอร์เท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" id="maple">
+          <div class="property-media"><img src="https://i.imgur.com/pvKzZGg.png" alt="บ้านเดี่ยวชั้นเดียว เมเปิลโร้ด" loading="lazy"><span class="type-tag">02 / SINGLE-STORY HOUSE</span></div>
+          <div class="property-body">
+            <div class="title-line"><div><span class="property-category">MAPLE ROAD</span><h3>เมเปิลโร้ด</h3></div><strong class="price">$25,000</strong></div>
+            <p class="description">บ้านเดี่ยวชั้นเดียวขนาดเล็ก จุดเริ่มต้นดี ๆ ของชาวเอลิเชียนที่ใฝ่ฝันอยากมีบ้านแยกเป็นของตัวเอง บรรยากาศรอบข้างเป็นมิตรต่อผู้พักอาศัย พร้อมระบบรักษาความปลอดภัยเป็นอย่างดี</p>
+            <div class="metrics"><div><strong>04</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>06</strong><span>กระทู้ต่อหลัง</span></div><div><strong>02</strong><span>ห้องเปล่า</span></div></div>
+            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-maple"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
+            <div class="property-detail" id="detail-maple" hidden>
+              <h4>รายละเอียดและข้อกำหนด</h4>
+              <p>จำนวนผู้พักอาศัยไม่เกิน 4 คน และจำกัดไม่เกิน 6 กระทู้ในฟอรั่มเมเปิลโร้ดต่อหนึ่งหลัง</p>
+              <ul><li>ห้องนั่งเล่น 1 ห้อง</li><li>ห้องนอนใหญ่ 2 ห้อง</li><li>ห้องครัว 1 ห้อง</li><li>ห้องเปล่า 2 ห้อง สามารถใช้เป็นห้องอะไรก็ได้</li></ul>
+              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านเดี่ยวชั้นเดียวเท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" id="pumpkins">
+          <div class="property-media"><img src="https://i.imgur.com/Kx8JkN4.png" alt="บ้านทาวน์เฮาส์ พัมป์กินส์โร้ด" loading="lazy"><span class="type-tag">03 / TOWNHOUSE</span></div>
+          <div class="property-body">
+            <div class="title-line"><div><span class="property-category">PUMPKINS ROAD</span><h3>พัมป์กินส์โร้ด</h3></div><strong class="price">$50,000</strong></div>
+            <p class="description">บ้านทาวน์เฮาส์รั้วติดกันแสนอบอุ่น ทุกหลังคัดสรรมาอย่างดีโดยคุณหง เพื่อให้มั่นใจในคุณภาพของการใช้ชีวิตอย่างสมบูรณ์ในทุกด้าน ครบทุกความต้องการ</p>
+            <div class="metrics"><div><strong>05</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>08</strong><span>กระทู้ต่อหลัง</span></div><div><strong>03</strong><span>ห้องเปล่า</span></div></div>
+            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-pumpkins"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
+            <div class="property-detail" id="detail-pumpkins" hidden>
+              <h4>รายละเอียดและข้อกำหนด</h4>
+              <p>จำนวนผู้พักอาศัยไม่เกิน 5 คน และจำกัดไม่เกิน 8 กระทู้ในฟอรั่มพัมป์กินส์โร้ดต่อหนึ่งหลัง</p>
+              <ul><li>ห้องนั่งเล่น 1 ห้อง</li><li>ห้องครัว 1 ห้อง</li><li>ห้องนอนใหญ่ 3 ห้อง</li><li>ห้องเปล่า 3 ห้อง สามารถใช้เป็นห้องอะไรก็ได้</li></ul>
+              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านทาวน์เฮาส์เท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" id="blossom">
+          <div class="property-media"><img src="https://i.imgur.com/b6qSFZt.png" alt="บ้านเดี่ยวสองชั้น บลอสซัมโร้ด" loading="lazy"><span class="type-tag">04 / TWO-STORY HOUSE</span></div>
+          <div class="property-body">
+            <div class="title-line"><div><span class="property-category">BLOSSOM ROAD</span><h3>บลอสซัมโร้ด</h3></div><strong class="price">$100,000</strong></div>
+            <p class="description">บ้านเดี่ยวสองชั้นทำเลดีมีคุณภาพ บรรยากาศสุดแสนพิเศษ เหมาะกับคนพิเศษ ครบทุกความต้องการโดยไม่จำกัดขอบเขตความฝันของคุณ</p>
+            <div class="metrics"><div><strong>07</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>15</strong><span>กระทู้ต่อหลัง</span></div><div><strong>FLEX</strong><span>จัดสรรพื้นที่เอง</span></div></div>
+            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-blossom"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
+            <div class="property-detail" id="detail-blossom" hidden>
+              <h4>รายละเอียดและข้อกำหนด</h4>
+              <p>จำนวนผู้พักอาศัยไม่เกิน 7 คน จำกัดไม่เกิน 15 กระทู้ในฟอรั่มบลอสซัมโร้ดต่อหนึ่งหลัง และสามารถจัดสรรกระทู้ได้เองตามใจชอบ</p>
+              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านเดี่ยวสองชั้นเท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="guidelines container" id="guidelines" aria-labelledby="guidelines-title">
+      <span class="guidelines-icon" aria-hidden="true">✦</span>
+      <div><p class="eyebrow">A NOTE TO RESIDENTS</p><h2 id="guidelines-title">ข้อควรทราบ</h2><p>สามารถเลือกภาพประกอบสำหรับตั้งกระทู้เองได้ โดยควรเลือกรูปภาพให้สอดคล้องกับประเภทบ้านที่กำหนดไว้ และปฏิบัติตามจำนวนผู้พักอาศัยและข้อจำกัดกระทู้ของฟอรั่มแต่ละย่าน</p></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><span>✦ ELYSIAN REAL ESTATE</span><span>PROPERTY DIRECTORY · ALL RIGHTS RESERVED</span></div></footer>
+</body>
+</html>
