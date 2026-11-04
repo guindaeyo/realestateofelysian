@@ -178,3 +178,23 @@ body{font-size:16px}
 .footer-brand em{color:var(--gold);font-weight:400}
 .footer-brand p{font:10px/1.8 'DM Sans',sans-serif;letter-spacing:.7px;color:#8d877c;margin:4px 0 0}
 @media(max-width:760px){.footer{display:flex;flex-direction:column;align-items:stretch;gap:22px}.footer-registry,.footer-brand{flex:auto;width:100%}.footer-brand{text-align:right}.footer .footer-registry .footer-update-description{font-size:11px}}
+
+/* Footer alignment: no decorative separator, balanced two-column centers */
+.footer .footer-registry .update-status::before,
+.footer .footer-right .update-status::before{
+  content:none!important;
+  display:none!important;
+}
+.footer .footer-registry,
+.footer .footer-brand{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:76px;
+}
+.footer .footer-registry .update-status{gap:4px}
+.footer .footer-brand strong{display:block;margin:0}
+.footer .footer-brand p{margin:5px 0 0}
+@media(max-width:760px){
+  .footer .footer-registry,.footer .footer-brand{min-height:0}
+}
