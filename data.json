@@ -586,14 +586,14 @@
     {
       "name": "บ้านเลขที่ 13 บลอสซัมโร้ด",
       "road": "blossom",
-      "count": "?",
+      "count": 0,
       "owner": "?",
       "residents": [],
-      "rawResidents": "?",
+      "rawResidents": "",
       "number": "13",
-      "updatedAt": null,
-      "image": "",
-      "threadUrl": ""
+      "updatedAt": "2026-11-04T20:22:38.887Z",
+      "image": "https://i.imgur.com/FtG2xEr.png",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=164"
     },
     {
       "name": "เพิงโหยหวน",
@@ -769,5 +769,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T20:21:53.532Z"
+  "lastUpdated": "2026-11-04T20:22:38.887Z"
 }
