@@ -1,122 +1,14 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0a08">
-  <meta name="description" content="ข้อมูลกองอสังหาริมทรัพย์แห่งเอลิเชียน — รายละเอียดบ้าน ราคา และข้อกำหนดการอยู่อาศัย">
-  <title>Elysian Real Estate — กองอสังหาริมทรัพย์</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="กลับไปหน้าแรก">
-        <span class="brand-icon" aria-hidden="true">✦</span>
-        <span class="brand-name"><small>ELYSIAN • PROPERTY COLLECTION</small><strong>REAL ESTATE</strong></span>
-      </a>
-      <nav class="nav" aria-label="เมนูหลัก">
-        <a href="#properties">อสังหาริมทรัพย์</a>
-        <a href="#guidelines">ข้อควรทราบ</a>
-      </nav>
-    </div>
-  </header>
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0b0a"><meta name="description" content="ทำเนียบกองอสังหาริมทรัพย์แห่งเอลิเชียน บันทึกข้อมูลบ้าน เจ้าของ และผู้พักอาศัย"><title>ELYSIAN ESTATES — กองอสังหาริมทรัพย์</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script><script src="script.js" defer></script></head>
+<body><div class="site-shell"><header class="header"><a class="brand" href="#home" aria-label="กลับหน้าแรก"><span class="brand-icon"><i data-lucide="landmark"></i></span><span><b>ELYSIAN <em>ESTATES</em></b><small>PROPERTY & RESIDENCY ARCHIVE</small></span></a><button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู" aria-expanded="false"><i data-lucide="menu"></i></button><nav class="nav" id="mainNav" aria-label="เมนูหลัก"><button class="nav-link active" data-view="home">ภาพรวม</button><button class="nav-link" data-view="directory">ทะเบียนบ้าน</button><button class="nav-link" data-view="lands">โฉนดต่างเมือง</button><button class="nav-link" data-view="requests">ปลดล็อกกระทู้</button></nav></header>
+<main id="main"><section class="view active" id="view-home"><div class="hero"><div class="hero-lines"></div><div class="hero-inner"><div class="eyebrow"><span class="eyebrow-line"></span> OFFICIAL PROPERTY DIRECTORY <span class="eyebrow-line"></span></div><div class="hero-monogram">E</div><h1>ELYSIAN <i>ESTATES</i></h1><p class="hero-thai">กองอสังหาริมทรัพย์แห่งเอลิเชียน</p><p class="hero-desc">ทำเนียบที่อยู่อาศัย ข้อมูลเจ้าของและผู้พักอาศัย รวมถึงบันทึกโฉนดต่างเมืองและคำร้องปลดล็อกกระทู้</p><button class="gold-button" data-go="directory">สำรวจทะเบียนอสังหาริมทรัพย์ <i data-lucide="arrow-up-right"></i></button><div class="hero-bottom"><span>EST. ELYSIAN</span><span>ARCHIVED RECORDS · 20 APR 2026</span></div></div></div>
+<div class="stats" id="summaryStats"></div>
+<div class="section-title"><div><p class="overline">THE COLLECTION</p><h2>ประเภทอสังหาริมทรัพย์ <span>ทั้งสี่รูปแบบ</span></h2></div><p>เลือกดูข้อมูลที่อยู่อาศัยและรายชื่อบ้านในแต่ละย่าน</p></div><div class="road-grid" id="roadGrid"></div>
+<div class="home-bottom"><div class="ornament"><i data-lucide="shield-check"></i></div><div><p class="overline">PROPERTY GUIDELINES</p><h3>ข้อควรทราบเกี่ยวกับการใช้งานฟอรั่ม</h3><p>ผู้พักอาศัยสามารถจัดหาภาพประกอบกระทู้ได้เอง โดยเลือกภาพให้สอดคล้องกับประเภทของที่อยู่อาศัยและข้อจำกัดจำนวนกระทู้ของแต่ละย่าน ข้อมูลทะเบียนจัดแสดงตามเอกสารที่ได้รับ</p></div></div></section>
+<section class="view listing-view" id="view-directory"><div class="page-heading"><p class="overline">RESIDENTIAL REGISTER</p><h1>ทะเบียนบ้าน <em>เอลิเชียน</em></h1><p>ค้นหาบ้าน เลขที่บ้าน ชื่อเจ้าของ หรือรายชื่อผู้พักอาศัย และกดดูรายละเอียดของแต่ละรายการ</p></div><div class="toolbar"><label class="search-box"><i data-lucide="search"></i><input type="search" id="houseSearch" placeholder="ค้นหาบ้าน / เลขที่ / ชื่อผู้อาศัย..."></label><div class="filter-pills" id="houseFilters"></div></div><div class="results-heading"><span id="houseResultCount"></span><span>เลือกการ์ดเพื่อดูรายละเอียด</span></div><div class="directory-grid" id="houseList"></div></section>
+<section class="view listing-view" id="view-lands"><div class="page-heading"><p class="overline">OUT-OF-TOWN DEEDS</p><h1>โฉนดที่ดิน <em>ต่างเมือง</em></h1><p>รายการที่ดินและผู้พักอาศัยในเขตนอกหมู่บ้านเอลิเชียน</p></div><label class="search-box standalone"><i data-lucide="search"></i><input type="search" id="landSearch" placeholder="ค้นหาที่ดินหรือชื่อเจ้าของ..."></label><div class="results-heading"><span id="landResultCount"></span></div><div class="directory-grid" id="landList"></div></section>
 
-  <main id="top">
-    <section class="hero container" aria-labelledby="hero-title">
-      <div class="hero-inner">
-        <p class="eyebrow"><span class="dot"></span> THE ELYSIAN COLLECTION</p>
-        <h1 id="hero-title">THE ART OF <em>LIVING.</em></h1>
-        <div class="hero-rule"><span>✦</span></div>
-        <p class="hero-thai">กองอสังหาริมทรัพย์</p>
-        <p class="hero-description">ค้นพบบ้านที่เหมาะกับเรื่องราวของคุณในเอลิเชียน ตั้งแต่บ้านคอนเทนเนอร์กลางธรรมชาติไปจนถึงบ้านเดี่ยวสองชั้น พร้อมรายละเอียดราคาและข้อกำหนดของแต่ละพื้นที่</p>
-        <a class="explore-link" href="#properties">EXPLORE THE COLLECTION <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="hero-bottom"><span>ESTATE DIRECTORY</span><span>01 — 04</span></div>
-    </section>
-
-    <section id="properties" class="properties container" aria-labelledby="properties-title">
-      <div class="section-heading">
-        <div><p class="eyebrow">CURATED RESIDENCES</p><h2 id="properties-title">Our <em>Properties</em></h2></div>
-        <p>เลือกสำรวจรายละเอียดอสังหาริมทรัพย์ทั้ง 4 ประเภท</p>
-      </div>
-
-      <div class="property-grid">
-        <article class="property-card" id="pinewoods">
-          <div class="property-media"><img src="https://i.imgur.com/gWJrzSv.png" alt="บ้านคอนเทนเนอร์ ไพน์วูดส์โร้ด" loading="lazy"><span class="type-tag">01 / CONTAINER HOUSE</span></div>
-          <div class="property-body">
-            <div class="title-line"><div><span class="property-category">PINEWOODS ROAD</span><h3>ไพน์วูดส์โร้ด</h3></div><strong class="price">$20,000</strong></div>
-            <p class="description">ตู้คอนเทนเนอร์เก่าที่ปรับปรุงให้เป็นบ้านสำหรับอยู่อาศัย ท่ามกลางธรรมชาติและต้นสนจนย่านนี้ถูกเรียกอย่างลำลองว่าไพน์วูดส์โร้ด เหมาะสำหรับคนที่ชอบดีไซน์เก๋ เท่ และแหวกแนว</p>
-            <div class="metrics"><div><strong>04</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>04</strong><span>กระทู้ต่อหลัง</span></div><div><strong>03</strong><span>ห้องเปล่า</span></div></div>
-            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-pinewoods"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
-            <div class="property-detail" id="detail-pinewoods" hidden>
-              <h4>รายละเอียดและข้อกำหนด</h4>
-              <p>จำนวนผู้พักอาศัยไม่เกิน 4 คน และจำกัดไม่เกิน 4 กระทู้ในฟอรั่มไพน์วูดส์โร้ดต่อหนึ่งหลัง</p>
-              <ul><li>ห้องนั่งเล่นและห้องครัว 1 ห้อง</li><li>ห้องเปล่า 3 ห้อง สามารถใช้เป็นห้องอะไรก็ได้</li><li>ชำระเงินเพิ่ม <strong>$2,500</strong> ต่อ 1 ห้อง เพื่อขอเพิ่มห้องได้สูงสุด 2 ห้อง</li></ul>
-              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านคอนเทนเนอร์เท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="property-card" id="maple">
-          <div class="property-media"><img src="https://i.imgur.com/pvKzZGg.png" alt="บ้านเดี่ยวชั้นเดียว เมเปิลโร้ด" loading="lazy"><span class="type-tag">02 / SINGLE-STORY HOUSE</span></div>
-          <div class="property-body">
-            <div class="title-line"><div><span class="property-category">MAPLE ROAD</span><h3>เมเปิลโร้ด</h3></div><strong class="price">$25,000</strong></div>
-            <p class="description">บ้านเดี่ยวชั้นเดียวขนาดเล็ก จุดเริ่มต้นดี ๆ ของชาวเอลิเชียนที่ใฝ่ฝันอยากมีบ้านแยกเป็นของตัวเอง บรรยากาศรอบข้างเป็นมิตรต่อผู้พักอาศัย พร้อมระบบรักษาความปลอดภัยเป็นอย่างดี</p>
-            <div class="metrics"><div><strong>04</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>06</strong><span>กระทู้ต่อหลัง</span></div><div><strong>02</strong><span>ห้องเปล่า</span></div></div>
-            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-maple"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
-            <div class="property-detail" id="detail-maple" hidden>
-              <h4>รายละเอียดและข้อกำหนด</h4>
-              <p>จำนวนผู้พักอาศัยไม่เกิน 4 คน และจำกัดไม่เกิน 6 กระทู้ในฟอรั่มเมเปิลโร้ดต่อหนึ่งหลัง</p>
-              <ul><li>ห้องนั่งเล่น 1 ห้อง</li><li>ห้องนอนใหญ่ 2 ห้อง</li><li>ห้องครัว 1 ห้อง</li><li>ห้องเปล่า 2 ห้อง สามารถใช้เป็นห้องอะไรก็ได้</li></ul>
-              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านเดี่ยวชั้นเดียวเท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="property-card" id="pumpkins">
-          <div class="property-media"><img src="https://i.imgur.com/Kx8JkN4.png" alt="บ้านทาวน์เฮาส์ พัมป์กินส์โร้ด" loading="lazy"><span class="type-tag">03 / TOWNHOUSE</span></div>
-          <div class="property-body">
-            <div class="title-line"><div><span class="property-category">PUMPKINS ROAD</span><h3>พัมป์กินส์โร้ด</h3></div><strong class="price">$50,000</strong></div>
-            <p class="description">บ้านทาวน์เฮาส์รั้วติดกันแสนอบอุ่น ทุกหลังคัดสรรมาอย่างดีโดยคุณหง เพื่อให้มั่นใจในคุณภาพของการใช้ชีวิตอย่างสมบูรณ์ในทุกด้าน ครบทุกความต้องการ</p>
-            <div class="metrics"><div><strong>05</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>08</strong><span>กระทู้ต่อหลัง</span></div><div><strong>03</strong><span>ห้องเปล่า</span></div></div>
-            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-pumpkins"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
-            <div class="property-detail" id="detail-pumpkins" hidden>
-              <h4>รายละเอียดและข้อกำหนด</h4>
-              <p>จำนวนผู้พักอาศัยไม่เกิน 5 คน และจำกัดไม่เกิน 8 กระทู้ในฟอรั่มพัมป์กินส์โร้ดต่อหนึ่งหลัง</p>
-              <ul><li>ห้องนั่งเล่น 1 ห้อง</li><li>ห้องครัว 1 ห้อง</li><li>ห้องนอนใหญ่ 3 ห้อง</li><li>ห้องเปล่า 3 ห้อง สามารถใช้เป็นห้องอะไรก็ได้</li></ul>
-              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านทาวน์เฮาส์เท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="property-card" id="blossom">
-          <div class="property-media"><img src="https://i.imgur.com/b6qSFZt.png" alt="บ้านเดี่ยวสองชั้น บลอสซัมโร้ด" loading="lazy"><span class="type-tag">04 / TWO-STORY HOUSE</span></div>
-          <div class="property-body">
-            <div class="title-line"><div><span class="property-category">BLOSSOM ROAD</span><h3>บลอสซัมโร้ด</h3></div><strong class="price">$100,000</strong></div>
-            <p class="description">บ้านเดี่ยวสองชั้นทำเลดีมีคุณภาพ บรรยากาศสุดแสนพิเศษ เหมาะกับคนพิเศษ ครบทุกความต้องการโดยไม่จำกัดขอบเขตความฝันของคุณ</p>
-            <div class="metrics"><div><strong>07</strong><span>ผู้พักอาศัยสูงสุด</span></div><div><strong>15</strong><span>กระทู้ต่อหลัง</span></div><div><strong>FLEX</strong><span>จัดสรรพื้นที่เอง</span></div></div>
-            <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-blossom"><span>VIEW PROPERTY DETAILS</span><span class="toggle-symbol" aria-hidden="true">+</span></button>
-            <div class="property-detail" id="detail-blossom" hidden>
-              <h4>รายละเอียดและข้อกำหนด</h4>
-              <p>จำนวนผู้พักอาศัยไม่เกิน 7 คน จำกัดไม่เกิน 15 กระทู้ในฟอรั่มบลอสซัมโร้ดต่อหนึ่งหลัง และสามารถจัดสรรกระทู้ได้เองตามใจชอบ</p>
-              <p class="caution">สามารถหารูปภาพตั้งกระทู้ได้เอง แต่จงจำไว้ว่านี่เป็นเพียงบ้านเดี่ยวสองชั้นเท่านั้น กรุณาหาภาพประกอบที่เหมาะสมกับฟอรั่ม</p>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="guidelines container" id="guidelines" aria-labelledby="guidelines-title">
-      <span class="guidelines-icon" aria-hidden="true">✦</span>
-      <div><p class="eyebrow">A NOTE TO RESIDENTS</p><h2 id="guidelines-title">ข้อควรทราบ</h2><p>สามารถเลือกภาพประกอบสำหรับตั้งกระทู้เองได้ โดยควรเลือกรูปภาพให้สอดคล้องกับประเภทบ้านที่กำหนดไว้ และปฏิบัติตามจำนวนผู้พักอาศัยและข้อจำกัดกระทู้ของฟอรั่มแต่ละย่าน</p></div>
-    </section>
-  </main>
-
-  <footer class="footer"><div class="container"><span>✦ ELYSIAN REAL ESTATE</span><span>PROPERTY DIRECTORY · ALL RIGHTS RESERVED</span></div></footer>
-</body>
-</html>
+<section class="view listing-view" id="view-requests"><div class="page-heading"><p class="overline">ROLEPLAY THREAD REQUESTS</p><h1>การปลดล็อก <em>กระทู้โรลเพลย์</em></h1><p>บันทึกคำร้องและผลอนุมัติจากข้อมูลต้นฉบับ</p></div><div id="requestList" class="request-list"></div><div class="notice"><i data-lucide="file-warning"></i><span>ค่าที่ช่องวันที่ในต้นฉบับเป็นตัวเลข 244404 จึงแสดงตามต้นฉบับโดยไม่แปลงเป็นวันเดือนปี</span></div></section></main>
+<footer class="footer"><div><strong>ELYSIAN <em>ESTATES</em></strong><p>PROPERTY & RESIDENCY ARCHIVE</p></div><div class="footer-right"><span>ข้อมูลทะเบียนจากไฟล์ [RPTH] อัปเดต 20/04/2026</span><span>รูปภาพอสังหาริมทรัพย์โดยลิงก์ที่ให้มา · เว็บไซต์แสดงข้อมูลเท่านั้น</span></div></footer></div>
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden><div class="modal-backdrop" data-close="true"></div><div class="modal-panel"><div class="modal-head"><span class="overline" id="modalKicker">PROPERTY RECORD</span><button class="icon-button" id="modalClose" aria-label="ปิดรายละเอียด"><i data-lucide="x"></i></button></div><div id="modalContent"></div></div></div>
+</body></html>
