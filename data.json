@@ -449,18 +449,17 @@
     {
       "name": "บ้านเลขที่ 8 พัมป์กินส์โร้ดทาวน์เฮาส์",
       "road": "pumpkin",
-      "count": 3,
+      "count": 2,
       "owner": "Eirene I. Alanna",
       "residents": [
-        "Eirene I. Alanna",
         "Raphael Lefebvre",
         "Valren Crimsonveil"
       ],
-      "rawResidents": "1. Eirene I. Alanna\n2. Raphael Lefebvre\n3. Valren Crimsonveil",
+      "rawResidents": "1. Raphael Lefebvre\n2. Valren Crimsonveil",
       "number": "8",
-      "updatedAt": null,
-      "image": "",
-      "threadUrl": ""
+      "updatedAt": "2026-11-04T20:11:55.460Z",
+      "image": "https://i.imgur.com/4aT9Z9P.png",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=187"
     },
     {
       "name": "บ้านเลขที่ 1 บลอสซัมโร้ด",
@@ -769,5 +768,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T20:10:13.723Z"
+  "lastUpdated": "2026-11-04T20:11:55.460Z"
 }
