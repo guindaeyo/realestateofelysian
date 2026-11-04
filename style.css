@@ -67,3 +67,18 @@ body{font-size:16px}
 .admin-status.error{color:#f2aaa4}.admin-status.success{color:#abd69e}
 @media(max-width:850px){.staff-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.staff-grid{padding:0 18px;gap:14px}.staff-card{grid-template-columns:112px 1fr;min-height:180px}.staff-card>img{min-height:180px}.staff-details{padding:15px 13px}.staff-details h3{font-size:25px}.staff-details>p:not(.overline){font-size:14px}.staff-details .overline{font-size:9px}.admin-login{padding:23px}.admin-workspace{padding:17px}.admin-edit-form{grid-template-columns:1fr}.admin-edit-form .span-all{grid-column:1}.modal-panel{padding:23px 19px}.modal-image{height:200px}.road-info>p{font-size:15px!important}}
+
+/* 2026-11: homepage refinements */
+.hero h1{font-size:clamp(58px,10vw,136px);letter-spacing:clamp(2px,.65vw,8px);margin:22px 0 25px;color:var(--text)}
+.hero-inner{padding-bottom:clamp(70px,8vw,105px)}
+.hero .gold-button svg{width:19px;height:19px;stroke-width:1.8}
+.price,.stat strong,.record-card .record-number,.modal-meta .meta strong,.meta strong,.road-features strong,.request-card strong{font-family:'DM Sans','Bai Jamjuree',sans-serif;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:'tnum' 1,'lnum' 1}
+.price{font-weight:600;font-size:30px;letter-spacing:.3px}
+.home-bottom strong{color:#e8d1a8;font-weight:600}
+.staff-section{padding:0 0 80px}
+.staff-section .section-title{margin-top:65px}
+@media(max-width:760px){.hero h1{font-size:clamp(49px,12vw,76px)}.hero-inner{padding-bottom:70px}.staff-section{padding-bottom:40px}.staff-section .section-title{margin-top:48px}}
+
+/* Hero: retain ELYSIAN ESTATES, remove standalone decorative E */
+.hero-monogram{display:none!important}
+.hero h1 i{font-style:italic;color:var(--gold);font-weight:400}
