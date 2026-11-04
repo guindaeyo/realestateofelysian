@@ -650,7 +650,7 @@
     {
       "name": "บ้านเลขที่ 8 ไพน์วูดส์โร้ด",
       "road": "pine",
-      "number": "",
+      "number": "8",
       "owner": "Ray Marmoris",
       "image": "https://iili.io/CqwyAvf.png",
       "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=469",
@@ -659,7 +659,7 @@
       ],
       "count": 1,
       "rawResidents": "1. Ray Marmoris",
-      "updatedAt": "2026-11-04T19:45:12.113Z"
+      "updatedAt": "2026-11-04T19:46:31.452Z"
     }
   ],
   "lands": [
@@ -738,5 +738,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T19:45:12.113Z"
+  "lastUpdated": "2026-11-04T19:46:31.452Z"
 }
