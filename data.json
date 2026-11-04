@@ -306,9 +306,9 @@
         "Ray Marmoris",
         "Zane Marmoris"
       ],
-      "rawResidents": "1. Ray Marmoris \n2. Zane Marmoris",
+      "rawResidents": "1. Ray Marmoris\n2. Zane Marmoris",
       "number": "8",
-      "updatedAt": null,
+      "updatedAt": "2026-11-04T19:58:50.013Z",
       "image": "",
       "threadUrl": ""
     },
@@ -753,5 +753,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T19:57:37.269Z"
+  "lastUpdated": "2026-11-04T19:58:50.013Z"
 }
