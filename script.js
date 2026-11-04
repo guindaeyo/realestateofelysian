@@ -139,6 +139,20 @@ function saveAdminForm(){
  DATA.lastUpdated=result.updatedAt;adminDirty=true;renderAdminRecords();refreshSite();adminMessage('บันทึกร่างสำเร็จ — กดบันทึกขึ้น GitHub เพื่อให้ข้อมูลแสดงบนเว็บสำหรับทุกคน','success');
 }
 const encodeBase64=str=>btoa(Array.from(new TextEncoder().encode(str),b=>String.fromCharCode(b)).join(''));
+// Only report GitHub's permission/status diagnostics; never show or log the token.
+async function githubError(response,step){
+ const info=await response.json().catch(()=>({}));
+ const required=response.headers.get('x-accepted-github-permissions');
+ const granted=response.headers.get('x-oauth-scopes');
+ let advice='';
+ if(response.status===401)advice='Token ไม่ถูกต้องหรือหมดอายุ';
+ else if(response.status===403)advice=step.startsWith('เขียน')?'GitHub ไม่อนุญาตให้ Token เขียนไฟล์: ตรวจสอบว่า Token มี Contents: Read and write สำหรับ Repository นี้ และตรวจสอบกฎป้องกันสาขา main':'GitHub ไม่อนุญาตให้ Token อ่านไฟล์: ตรวจสอบ Resource owner และ Selected repositories';
+ else if(response.status===404)advice='ไม่พบไฟล์หรือ Repository ที่ Token มีสิทธิ์เข้าถึง ตรวจสอบ guindaeyo/realestateofelysian และ data.json';
+ else if(response.status===409)advice='มีการเปลี่ยนแปลงไฟล์พร้อมกัน ให้รีเฟรชและลองใหม่';
+ else if(response.status===422)advice='รูปแบบคำขอหรือค่า SHA ไม่ถูกต้อง';
+ const details=[step+'ไม่สำเร็จ (HTTP '+response.status+')',info.message||response.statusText,required?'สิทธิ์ที่ API ต้องการ: '+required:'',granted?'OAuth scopes: '+granted:'',advice].filter(Boolean);
+ return new Error(details.join(' — '));
+}
 async function publishAdmin(){
  if(!adminUnlocked)return;
  const token=$('#githubToken').value.trim();if(!token){adminMessage('กรุณาใส่ GitHub fine-grained token ก่อนเผยแพร่','error');return;}
@@ -147,7 +161,7 @@ async function publishAdmin(){
  const headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'};
  try{
   const get=await fetch(url+'?ref='+encodeURIComponent(ADMIN_CONFIG.branch),{headers,cache:'no-store'});
-  if(!get.ok)throw new Error('อ่านไฟล์บน GitHub ไม่สำเร็จ ('+get.status+'). ตรวจสอบสิทธิ์ token และไฟล์ data.json');
+  if(!get.ok)throw await githubError(get,'อ่านไฟล์ data.json');
   const existing=await get.json();
   // Guard against accidentally overwriting changes made by another editor.
   const parsed=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(existing.content.replace(/\s/g,'')),c=>c.charCodeAt(0))));
@@ -156,7 +170,7 @@ async function publishAdmin(){
   if(adminDirty&&!confirm('ยืนยันเผยแพร่ข้อมูลทั้งหมดขึ้น GitHub?\nเว็บไซต์จะอัปเดตหลัง Vercel Deploy สำเร็จ'))return;
   const payload={message:'Update Elysian property records via admin',content:encodeBase64(JSON.stringify(DATA,null,2)+'\n'),sha:existing.sha,branch:ADMIN_CONFIG.branch};
   const sent=await fetch(url,{method:'PUT',headers,body:JSON.stringify(payload)});
-  if(!sent.ok){const info=await sent.json().catch(()=>({}));throw new Error(info.message||'บันทึก GitHub ไม่สำเร็จ ('+sent.status+')');}
+  if(!sent.ok)throw await githubError(sent,'เขียนไฟล์ data.json');
   adminDirty=false;baselineData=JSON.stringify(DATA);lastDataSignature=baselineData;lastExternalCheck=new Date().toISOString();updateTimestampUI();adminMessage('เผยแพร่ขึ้น GitHub สำเร็จ! Vercel จะเริ่ม Deploy ใหม่โดยอัตโนมัติ','success');$('#githubToken').value='';
  }catch(e){adminMessage('ไม่สำเร็จ: '+e.message,'error');}finally{button.disabled=false;}
 }
