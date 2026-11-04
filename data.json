@@ -129,13 +129,14 @@
       "count": 1,
       "owner": "Miller L. Alan",
       "residents": [
-        "Miller L. Alan"
+        "Miller L. Alan",
+        "เจ้าของบ้านมิได้พักอาศัยที่นี่"
       ],
-      "rawResidents": "1. Miller L. Alan",
+      "rawResidents": "1. Miller L. Alan\n2. เจ้าของบ้านมิได้พักอาศัยที่นี่",
       "number": "4",
-      "updatedAt": null,
-      "image": "",
-      "threadUrl": ""
+      "updatedAt": "2026-11-04T19:36:17.896Z",
+      "image": "https://i.imgur.com/NbBffAx.png",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=379"
     },
     {
       "name": "บ้านเลขที่ 5 ไพน์วูดส์โร้ด",
@@ -725,5 +726,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T19:34:42.285Z"
+  "lastUpdated": "2026-11-04T19:36:17.896Z"
 }
