@@ -660,6 +660,20 @@
       "count": 1,
       "rawResidents": "1. Ray Marmoris",
       "updatedAt": "2026-11-04T19:46:31.452Z"
+    },
+    {
+      "name": "บ้านเลขที่ 9 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "number": "9",
+      "owner": "Eric Hawkins",
+      "image": "",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=486",
+      "residents": [
+        "Eric Hawkins"
+      ],
+      "count": 1,
+      "rawResidents": "1. Eric Hawkins",
+      "updatedAt": "2026-11-04T19:48:34.754Z"
     }
   ],
   "lands": [
@@ -738,5 +752,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T19:46:31.452Z"
+  "lastUpdated": "2026-11-04T19:48:34.754Z"
 }
