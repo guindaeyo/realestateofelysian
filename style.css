@@ -98,8 +98,8 @@ body{font-size:16px}
 .stats .stat > span{display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.5;flex-wrap:wrap}
 .stats .stat > span svg{width:17px;height:17px;display:block;flex:none;vertical-align:middle;position:static;transform:none}
 .forum-link-row{margin:20px 0 24px}
-.forum-link-button{display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:48px;padding:12px 20px;border:1px solid #b99962;background:linear-gradient(135deg,#cfae74,#b58e53);color:#16110a!important;font-family:'Bai Jamjuree',sans-serif;font-size:16px;font-weight:700;text-decoration:none;transition:background .2s ease,border-color .2s ease,transform .2s ease}
-.forum-link-button:hover{background:#e6c58b;border-color:#f0d6a3;transform:translateY(-1px)}
+.forum-link-button{display:inline-flex;align-items:center;justify-content:center;gap:0;min-height:0;padding:9px 15px;border:1px solid #b99962;background:#cba86e;color:#16110a!important;font-family:'Bai Jamjuree',sans-serif;font-size:14px;font-weight:600;line-height:1.5;text-decoration:none;transition:box-shadow .18s ease,border-color .18s ease;transform:none;box-shadow:none}
+.forum-link-button:hover{background:#e3c48d;color:#16110a!important;border-color:#f0d6a3;transform:none;box-shadow:0 0 0 1px rgba(231,201,145,.2),0 3px 12px rgba(199,164,101,.12)}
 .forum-link-button:focus-visible{outline:2px solid #f6deb1;outline-offset:3px}
 .forum-link-button svg{width:18px;height:18px;flex:none}
 @media(max-width:600px){.stats .stat > span{gap:6px;font-size:13px}.stats .stat > span svg{width:16px;height:16px}.forum-link-button{width:100%;font-size:15px}}
@@ -203,6 +203,6 @@ body{font-size:16px}
 .modal-image{display:block;width:100%;max-width:100%;height:235px;object-fit:cover;object-position:center;margin:14px 0 0;overflow:hidden}
 .modal-image[hidden]{display:none!important}
 .forum-link-row{margin:16px 0 20px}
-.forum-link-button{width:auto!important;min-height:0;padding:9px 15px;gap:0;font-size:14px;line-height:1.5;font-weight:600;white-space:normal;text-align:center;box-shadow:none}
+.forum-link-button{width:auto!important;white-space:normal;text-align:center;-webkit-tap-highlight-color:transparent}
 .forum-link-button svg{display:none!important}
-@media(max-width:600px){.modal-image{height:200px}.forum-link-button{width:auto!important;max-width:100%;font-size:14px;padding:9px 14px}}
+@media(max-width:600px){.modal-image{height:200px}.forum-link-button{width:auto!important;max-width:100%;padding:9px 14px}}
