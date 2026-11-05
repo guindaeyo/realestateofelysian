@@ -171,14 +171,15 @@
     {
       "name": "บ้านเลขที่ 7 ไพน์วูดส์โร้ด",
       "road": "pine",
-      "count": 1,
+      "count": 2,
       "owner": "Hans X. Frost",
       "residents": [
-        "Hans X. Frost"
+        "Hans X. Frost",
+        "Hansel Legarius"
       ],
-      "rawResidents": "1. Hans X. Frost",
+      "rawResidents": "1. Hans X. Frost\n2. Hansel Legarius",
       "number": "7",
-      "updatedAt": "2026-11-04T19:43:35.141Z",
+      "updatedAt": "2026-11-05T14:31:35.344Z",
       "image": "https://iili.io/CZfz8Gt.png",
       "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=442"
     },
@@ -789,5 +790,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-04T20:28:55.388Z"
+  "lastUpdated": "2026-11-05T14:31:35.344Z"
 }
