@@ -712,6 +712,23 @@
       "count": 3,
       "rawResidents": "1. Mikael F. Kaiser\n2. Lilith P. Kaiser\n3. Ferist F. Spencer",
       "updatedAt": "2026-11-04T20:28:55.388Z"
+    },
+    {
+      "name": "บ้านเลขที่ 12 เมเปิลโร้ด",
+      "road": "maple",
+      "number": "12",
+      "owner": "Violette C. Leclaire",
+      "image": "",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=494",
+      "residents": [
+        "Violette C. Leclaire",
+        "Richard V. Leclaire",
+        "Blaise Vernier",
+        "Morticia R. Frost"
+      ],
+      "count": 4,
+      "rawResidents": "1. Violette C. Leclaire\n2. Richard V. Leclaire\n3. Blaise Vernier\n4. Morticia R. Frost",
+      "updatedAt": "2026-11-05T15:32:37.336Z"
     }
   ],
   "lands": [
@@ -790,5 +807,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-05T14:31:35.344Z"
+  "lastUpdated": "2026-11-05T15:32:37.336Z"
 }
