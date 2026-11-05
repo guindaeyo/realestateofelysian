@@ -119,7 +119,7 @@ $('#menuToggle').addEventListener('click',()=>{const o=$('#mainNav').classList.t
 
 // Admin editor. Draft changes remain in this browser until published to GitHub.
 const ADMIN_CONFIG={repo:'guindaeyo/realestateofelysian',branch:'main',file:'data.json'};
-const ADMIN_HASH='d0dce33d42fbe3ef37ea9dba8485d0342cae71b1446a1a83a7c1570edc2b1a51';
+const ADMIN_HASH='e90a08b006d261e2c471848503cc66a0c6410c94ed3b280888aeb80e86d847b2';
 const ADMIN_FIELDS={
  houses:[['name','ชื่อบ้าน'],['road','ย่าน','road'],['number','เลขที่บ้าน'],['owner','เจ้าของบ้าน'],['image','ลิงก์รูปภาพบ้านหลังนี้ (URL)'],['threadUrl','ลิงก์กระทู้บ้านหลังนี้ (URL)'],['residents','รายชื่อผู้พักอาศัย (หนึ่งชื่อต่อบรรทัด)','lines'],['count','จำนวนผู้พักอาศัย','number']],
  lands:[['name','ชื่อโฉนด / ที่ดิน'],['owner','เจ้าของ'],['threadUrl','ลิงก์กระทู้ (URL)'],['residents','รายชื่อผู้พักอาศัย (หนึ่งชื่อต่อบรรทัด)','lines'],['count','จำนวนผู้พักอาศัย','number']],
