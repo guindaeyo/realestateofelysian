@@ -217,3 +217,31 @@ body{font-size:16px}
 #view-requests .page-heading .request-counter-link:hover,#view-requests .page-heading .request-counter-link:focus-visible{color:#fff0cf;border-color:#e4c38a}
 @media(max-width:1100px){#view-requests .request-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){#view-requests .request-list{grid-template-columns:1fr}}
+
+
+/* Property guidelines: compact leading and purchase counter */
+.home-bottom{align-items:flex-start;gap:22px}
+.home-bottom .guidelines-content{min-width:0;flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.home-bottom .guidelines-content>.overline{margin:0 0 5px!important;font-size:12px!important;line-height:1.6!important}
+.home-bottom .guidelines-content>h3{margin:0 0 12px!important;font-size:19px;line-height:1.6}
+.home-bottom .purchase-counter{width:100%;padding:12px 16px;border:1px solid rgba(199,164,101,.28);background:rgba(199,164,101,.045);margin:0 0 12px}
+.home-bottom .purchase-counter-title{display:flex;align-items:center;gap:9px;color:#e9d0a3;font-weight:600;font-size:16px;line-height:1.6}
+.home-bottom .purchase-counter-title svg{width:17px;height:17px;color:var(--gold);flex-shrink:0}
+.home-bottom .purchase-counter-title a{text-decoration:none;border-bottom:1px solid rgba(199,164,101,.42);transition:color .15s,border-color .15s}
+.home-bottom .purchase-counter-title a:hover{color:#fff0cd;border-color:#fff0cd}
+.home-bottom .purchase-counter p,.home-bottom .guidelines-note{font-size:15px!important;line-height:1.6!important;color:var(--muted)}
+.home-bottom .purchase-counter p{margin:5px 0 0!important}
+.home-bottom .guidelines-note{margin:0!important}
+.home-bottom .guidelines-note strong{color:#e8d1a8}
+@media(max-width:760px){.home-bottom{gap:14px;padding:19px}.home-bottom .guidelines-content>h3{font-size:17px}.home-bottom .purchase-counter{padding:12px}.home-bottom .purchase-counter-title{font-size:15px}}
+
+/* Standalone purchase counter between the four home types and guidelines */
+.purchase-counter-standalone{margin:64px clamp(20px,5.5vw,88px) 0;padding:24px 30px;display:flex;align-items:center;gap:20px;border:1px solid rgba(199,164,101,.35);background:linear-gradient(115deg,#1d1911,#12110f);min-width:0}
+.purchase-counter-icon{width:52px;height:52px;flex-shrink:0;display:grid;place-items:center;border:1px solid rgba(199,164,101,.58);color:var(--gold)}
+.purchase-counter-icon svg{width:24px;height:24px}
+.purchase-counter-body{min-width:0}
+.purchase-counter-link{font-size:18px;font-weight:600;line-height:1.6;color:#e7c991;text-decoration:none;border-bottom:1px solid rgba(199,164,101,.5);transition:color .15s,border-color .15s}
+.purchase-counter-link:hover,.purchase-counter-link:focus-visible{color:#fff0cf;border-color:#fff0cf}
+.purchase-counter-body p{margin:6px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
+.home-bottom{margin-top:18px}
+@media(max-width:760px){.purchase-counter-standalone{margin:38px 20px 0;padding:18px;gap:13px}.purchase-counter-icon{width:42px;height:42px}.purchase-counter-icon svg{width:20px;height:20px}.purchase-counter-link{font-size:16px}.purchase-counter-body p{font-size:14px}.home-bottom{margin-top:14px}}
