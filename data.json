@@ -672,14 +672,14 @@
       "road": "pine",
       "number": "9",
       "owner": "Eric Hawkins",
-      "image": "",
+      "image": "https://iili.io/C8kew0J.png",
       "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=486",
       "residents": [
         "Eric Hawkins"
       ],
       "count": 1,
       "rawResidents": "1. Eric Hawkins",
-      "updatedAt": "2026-11-04T19:48:34.754Z"
+      "updatedAt": "2026-11-12T11:19:11.952Z"
     },
     {
       "name": "บ้านเลขที่ 11 เมเปิลโร้ด",
@@ -807,5 +807,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-05T15:32:37.336Z"
+  "lastUpdated": "2026-11-12T11:19:11.952Z"
 }
