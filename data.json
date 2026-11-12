@@ -744,6 +744,20 @@
       "count": 1,
       "rawResidents": "1. Landon A. Rutherford\n2. Franklin D. Bloodworth",
       "updatedAt": "2026-11-12T11:20:55.022Z"
+    },
+    {
+      "name": "บ้านเลขที่ 13 เมเปิลโร้ด",
+      "road": "maple",
+      "number": "13",
+      "owner": "Rhea G. Stromblad",
+      "image": "",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=497",
+      "residents": [
+        "Rhea G. Stromblad"
+      ],
+      "count": 1,
+      "rawResidents": "1. Rhea G. Stromblad",
+      "updatedAt": "2026-11-12T11:23:36.481Z"
     }
   ],
   "lands": [
@@ -822,5 +836,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-12T11:20:55.022Z"
+  "lastUpdated": "2026-11-12T11:23:36.481Z"
 }
