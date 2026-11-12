@@ -758,6 +758,22 @@
       "count": 1,
       "rawResidents": "1. Rhea G. Stromblad",
       "updatedAt": "2026-11-12T11:23:36.481Z"
+    },
+    {
+      "name": "บ้านเลขที่ 11 ไพน์วูดส์โร้ด",
+      "road": "pine",
+      "number": "11",
+      "owner": "Quorlan Sam",
+      "image": "https://cdn.imgchest.com/files/0681c52e551a.png",
+      "threadUrl": "https://roleplayth.com/forumdisplay.php?fid=498",
+      "residents": [
+        "Quorlan Sam",
+        "Jenesis Kim",
+        "Leigh H. Saunderson"
+      ],
+      "count": 3,
+      "rawResidents": "1. Quorlan Sam\n2. Jenesis Kim\n3. Leigh H. Saunderson",
+      "updatedAt": "2026-11-12T15:00:36.067Z"
     }
   ],
   "lands": [
@@ -836,5 +852,5 @@
       "updatedAt": null
     }
   ],
-  "lastUpdated": "2026-11-12T11:25:00.424Z"
+  "lastUpdated": "2026-11-12T15:00:36.067Z"
 }
